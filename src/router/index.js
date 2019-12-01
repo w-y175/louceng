@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Del from '../views/del.vue'
+import Input from '../views/Input.vue'
 
 Vue.use(VueRouter)
 
@@ -13,6 +14,10 @@ const routes = [
   {
     path:"/del",
     component:Del
+  },
+  {
+    path:"/input",
+    component:Input
   }
 ]
 
