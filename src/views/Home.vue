@@ -27,13 +27,13 @@ export default {
 
   },
   mounted(){
-      axios.get('https://baojia.chelun.com/v2-car-getMasterBrandList.html').then(res=>{
-        console.log(res);
+      // axios.get('https://baojia.chelun.com/v2-car-getMasterBrandList.html').then(res=>{
+      //   console.log(res);
         
-      })
+      // })
   }
 }
 </script>
-<style scoped lang="scss">
+<style scoped >
 
 </style>
