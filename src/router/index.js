@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Del from '../views/del.vue'
 import Input from '../views/Input.vue'
+import Img from '../views/Img.vue'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,10 @@ const routes = [
   {
     path:"/input",
     component:Input
+  },
+  {
+    path:"/img",
+    component:Img
   }
 ]
 
