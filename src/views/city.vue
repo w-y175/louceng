@@ -4,7 +4,9 @@
         <p class="beijing">北京</p>
         <p class="autom">省市</p>
         <ul class="ul">
-            <li v-for="(item,index) in cityList" :key="index">
+            <li v-for="(item,index) in cityList" :key="index"
+            @click="cityIndex(item.CityID)"
+            >
             {{item.CityName}}
             <span class="cityicn">&gt;</span></li>
         </ul>
@@ -28,7 +30,9 @@ export default {
          ...mapState(['cityList'])
     },
     methods:{
-
+        cityIndex(id){
+            console.log(id,'id')
+        }
     },
     created(){
         console.log(this.cityList)
@@ -39,6 +43,9 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+    .city{
+         overflow-y: scroll;
+    }
     .autom{
         width: 100%;
         height: 20px;
@@ -66,5 +73,6 @@ export default {
         padding-right: 15px;
         font-size: 18px;
         color: #ccc;
+       
     }
 </style>
