@@ -5,9 +5,9 @@
             <img v-lazy="inquiryDetailList.Picture" slt="" class="inquiryDetailImg" />
             <div>
                 <p class="inquiryDetailtop">{{inquiryDetailList.AliasName}}</p>
-                <p><span>{{inquiryDetailList.list[0].market_attribute.year}}</span>款 <span>{{inquiryDetailList.list[0].car_name}}</span> </p>
+                <p><span>{{inquiryDetailList.list&&inquiryDetailList.list[0].market_attribute.year}}</span>款 <span  v-show="inquiryDetailList">{{inquiryDetailList.list&&inquiryDetailList.list[0].car_name}}</span> </p>
                 </div>
-                <span class="">&gt;</span>
+                <span>&gt;</span>
             </div>
     </div>
 </template>
@@ -37,8 +37,8 @@ export default {
         let id = this.id;
             console.log(this.$route.query.id);
         axios.get('https://baojia.chelun.com/v2-car-getInfoAndListById.html',{params:{SerialID:id}}).then(res=>{
-
             this.inquiryDetailList=res.data.data;
+            console.log(this.inquiryDetailList)
         })
     },
     mounted(){
@@ -55,15 +55,15 @@ export default {
     }
     .inquiryDetail{
         display: flex;  
-        line-height: 30px;
+        line-height: 27px;
         margin-top: 15px;
     }
     .inquiryDetailtop{
         font-size: 18px;
     }
     .inquiryDetailImg{
-        width: 110px;
-        height: 70px;
+        width: 115px;
+        height: 75px;
         border-radius: 5%;
         border: 1px solid #ccc;
         margin:0 20px 0 15px;
