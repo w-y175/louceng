@@ -8,10 +8,12 @@
 *{
   padding:0;
   margin: 0;
+  list-style: none;
 }
 #app,html,body{
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 </style>

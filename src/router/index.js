@@ -5,10 +5,19 @@ import Home from '../views/Home.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  
   {
     path: '/',
     component: Home
   },
+  {
+    path:"/detail",
+    component:()=>import('../views/detail/')
+  },
+  {
+    path:'/inquiryDetail',
+    component:()=>import('../views/inquiryDetail/')
+  }
 ]
 
 const router = new VueRouter({

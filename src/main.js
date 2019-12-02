@@ -2,9 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-
-Vue.config.productionTip = false
-
+import VueLazyLoad from 'vue-lazyload'
+Vue.config.productionTip = false;
+Vue.use(VueLazyLoad,{
+  preLoad:1,
+  error:require('./img/error.jpg'),
+  loading:require('./img/succecc.gif')
+});
 new Vue({
   router,
   store,
