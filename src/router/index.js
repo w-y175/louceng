@@ -16,6 +16,10 @@ const routes = [
   {
     path:'/inquiryDetail',
     component:()=>import('../views/inquiryDetail/')
+  },
+  {
+    path:'/city',
+    component:()=>import('../views/city')
   }
 ]
 
