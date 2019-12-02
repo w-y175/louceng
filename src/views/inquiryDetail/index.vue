@@ -35,8 +35,9 @@ export default {
     },
     created(){
         let id = this.id;
+            console.log(this.$route.query.id);
         axios.get('https://baojia.chelun.com/v2-car-getInfoAndListById.html',{params:{SerialID:id}}).then(res=>{
-            console.log(res);
+
             this.inquiryDetailList=res.data.data;
         })
     },

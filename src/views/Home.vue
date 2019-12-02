@@ -40,11 +40,8 @@ export default {
       this.tag =!this.tag;
       axios.get('https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html',{params:{MasterID:id}}).then(res=>{
        this.listIndex = res.data.data;  
-       console.log(this.listIndex);
-       
+      //  console.log(this.listIndex);
       })
-     
-      
     }
   },
   created() {},
@@ -63,9 +60,9 @@ export default {
         } else {
           alert(res.data.msg);
         }
-      });
+      })
   }
-};
+}
 </script>
 <style scoped lang="scss">
 .wrapper {
@@ -116,3 +113,4 @@ h4 {
   line-height: 40px;
 }
 </style>
+
