@@ -7,7 +7,7 @@
                 <p class="inquiryDetailtop">{{inquiryDetailList.AliasName}}</p>
                 <p><span>{{inquiryDetailList.list[0].market_attribute.year}}</span>款 <span>{{inquiryDetailList.list[0].car_name}}</span> </p>
                 </div>
-                <span class="">&gt;</span>
+                <span>&gt;</span>
             </div>
     </div>
 </template>
@@ -37,8 +37,8 @@ export default {
         let id = this.id;
             console.log(this.$route.query.id);
         axios.get('https://baojia.chelun.com/v2-car-getInfoAndListById.html',{params:{SerialID:id}}).then(res=>{
-
             this.inquiryDetailList=res.data.data;
+            console.log(this.inquiryDetailList)
         })
     },
     mounted(){

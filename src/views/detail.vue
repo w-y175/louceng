@@ -68,6 +68,7 @@ this.cur=index
     mounted(){
         let id = this.id;
         axios.get('https://baojia.chelun.com/v2-car-getInfoAndListById.html',{params:{SerialID:id}}).then(res=>{
+            console.log(res.data)
             this.datalist=res.data.data
         })
     }
@@ -174,7 +175,7 @@ this.cur=index
     
 }
 .list{
-    position: relative;
+ 
     width: 100%;
     height: 100%;
     
@@ -191,7 +192,7 @@ this.cur=index
 }
 .list .box{
     width: 100%;
-    height: 60px;
+    height: 80px;
     background: #fff;
     border-bottom: 1px solid #ccc;
 
@@ -211,9 +212,7 @@ this.cur=index
 }
 
 .list .cone{
-    position: absolute;
-    right: 20px;
-    bottom: 40px;
+    margin-left: 170px;
 }
 .list .cone span{
     color: #c0c0c0;
