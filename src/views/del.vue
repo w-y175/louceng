@@ -2,7 +2,7 @@
   <div class="page">
      
 <div class="img">
-<img :src="datalist.CoverPhoto" alt="">
+<img :src="datalist.CoverPhoto" alt="" @click="jump">
 <p>{{datalist.pic_group_count}}张照片</p>
 </div>
 
@@ -47,16 +47,13 @@
 </template>
 <script>
 import axios from 'axios'
-import { create } from 'domain'
-
 export default {
-
     data(){
         return{
             datalist:[],
             list:["全部","2019"],
-            cur:0,
-            id:this.$route.query.id
+            cur:0
+           
         }
     },
     methods: {
@@ -64,13 +61,17 @@ export default {
 this.cur=index
         },
         skip(){
-             let id = this.id;
-            this.$router.push({path:'/inquiryDetail',query:{id}})
+            this.$router.push('/input')
+        },
+        jump(){
+            
+            this.$router.push('/img')
         }
+
     },
     mounted(){
-        let id = this.id;
-        axios.get('https://baojia.chelun.com/v2-car-getInfoAndListById.html',{params:{SerialID:id}}).then(res=>{
+        axios.get('https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=2593').then(res=>{
+            console.log(res.data.data)
             this.datalist=res.data.data
         })
     }
@@ -85,14 +86,13 @@ this.cur=index
     flex-direction: column;
     background: #f5f5f5;
     font-weight: none;
-
-
+   
 }
 .img{
     width: 100%;
-    height: 176px;
+    height: 180px;
     position: relative;
-
+ 
 }
 .img img{
     width: 100%;
@@ -132,7 +132,7 @@ this.cur=index
 }
 .left h5{
     font-size: 13px;
-    color: #c0c0c0;
+    color: #d3d3d3;
     font-weight: none;
 }
 .con .right{
@@ -142,7 +142,7 @@ this.cur=index
     /* margin-left: 10px; */
 }
 .con .right button{
-    width: 180px;
+    width: 175px;
     height: 30px;
     background: #00afff;
     color: #fff;
@@ -173,11 +173,10 @@ this.cur=index
     display: flex;
     flex-direction: column;
     overflow: auto
-    
-    
+     
 }
 .list{
-  
+    
     width: 100%;
     height: 100%;
     
@@ -203,18 +202,25 @@ this.cur=index
    
 }
 .list .box .name{
-    font-size: 16px;
+    font-size: 15px;
+     margin-left: 7px;
+     padding-top: 5px;
+     
     
     
 }
 .list .box .type{
     font-size: 14px;
     color: #ccc;
-    margin-top: 10px
+    margin-top: 10px;
+     margin-left: 7px;
 }
 
 .list .cone{
-   margin-left: 170px
+   margin-left: 190px;
+
+   
+   
 }
 .list .cone span{
     color: #c0c0c0;

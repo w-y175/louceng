@@ -14,6 +14,7 @@
     <Right class="right" @jump="jumps" :list="list" />
   </div>
 </template>
+
 <script>
 import axios from "axios";
 import Right from "../components/right";
