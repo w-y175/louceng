@@ -1,8 +1,8 @@
 <template>
   <div class="page">
      
-<div class="img">
-<img :src="datalist.CoverPhoto" alt="">
+<div class="img" @click='img'>
+<img :src="datalist.CoverPhoto" alt="" >
 <p>{{datalist.pic_group_count}}张照片</p>
 </div>
 
@@ -66,6 +66,9 @@ this.cur=index
         skip(){
              let id = this.id;
             this.$router.push({path:'/inquiryDetail',query:{id}})
+        },
+        img(){
+            this.$router.push('/img')
         }
     },
     mounted(){

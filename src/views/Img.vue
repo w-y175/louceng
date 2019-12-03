@@ -1,8 +1,8 @@
 <template>
   <div class="page-img">
      <div class="select">
-   <div class="left" >颜色</div>
-   <div class="right" @click="car">车款</div>
+   <div class="left" @click='colour'>颜色</div>
+   <div class="right">车款</div>
      </div>
      <div class="image">
          <ul class="ul" v-for="(item,index) in list" :key='index'>
@@ -21,18 +21,15 @@ data(){
     }
 },
 methods: {
-    car(){
-    //    axios.get('https://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID=2593').then(res=>{
-    //         console.log(res.data.data)
-    //         this.datalist=res.data.data
-    //     })
+    colour(){
+        this.$router.push('/colour')
     }
 },
 mounted(){
-    axios.get("http://baojia.chelun.com/v2-car-getImageList.html?SerialID=2593&_1575248179043").then(res=>{
-                console.log(res.data.data)
-                this.list=res.data.data
-            })
+    // axios.get("https://baojia.chelun.com/v2-car-getModelImageYearColor.html?,{params:{SerialID:id}}").then(res=>{
+    //             console.log(res.data.data)
+    //             this.list=res.data.data
+    //         })
 }
 }
 </script>
