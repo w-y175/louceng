@@ -45,8 +45,8 @@
       </div>
     </div>
     <!-- 底部 -->
-    <div class="footer" @click="skip">
-      <div class="one">询问低价</div>
+    <div class="footer" @click="skip" >
+      <div class="one">{{del.BottomEntranceTitle}}</div>
       <div class="two">本地经销商为你报价</div>
     </div>
   </div>
@@ -173,7 +173,7 @@ export default {
 .page .count .top span {
   margin-left: 20px;
 }
-.active {
+.active{
   color: #00afff;
 }
 .page .count {

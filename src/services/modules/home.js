@@ -5,6 +5,10 @@ export let getInfoAndListById = (id)=>{
     return request('/v2-car-getInfoAndListById.html',{params:{SerialID:id}})
 }
 //汽车图片
-export let getImageList = (id)=>{
-    return request('/v2-car-getImageList.html',{params:{SerialID:id}})
+export let getImageList = ()=>{
+    return request('/v2-car-getImageList.html?SerialID=2593')
+}
+//汽车颜色
+export let getModelImageYearColor=()=>{
+    return request('/v2-car-getModelImageYearColor.html?SerialID=2593')
 }

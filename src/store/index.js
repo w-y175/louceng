@@ -18,7 +18,7 @@ export default new Vuex.Store({
       console.log(pay.cityList)
     },
     getCityIndex(pay,load){
-      pa
+      
     }
   },
   actions: {

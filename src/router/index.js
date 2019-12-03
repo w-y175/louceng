@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Img from '../views/Img.vue'
-import Colour from '../views/colour'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -25,11 +24,11 @@ const routes = [
   },
   {
     path:'/img',
-    component:Img
+    component:()=>import('../views/Img')
   },
   {
-    path:"colour",
-    component:Colour
+    path:"/colour",
+    component:()=>import('../views/colour')
   }
 ]
 

@@ -1,13 +1,13 @@
 <template>
   <div class="page-img">
-     {{list}}
+    
      <div class="select">
    <div class="left" @click='colour'>颜色</div>
    <div class="right">车款</div>
      </div>
      <div class="image">
-         <ul class="ul" v-for="(item,index) in list" :key='index'>
-             <li>{{item.Url}}</li>
+         <ul class="ul">
+           <li></li>
          </ul>
      </div>
   </div>
@@ -32,8 +32,8 @@ colour(){
     })
 },
 created(){
-    this.getImageList(this.$route.query.id);
-    console.log('$store...', this.$store)
+    this.getImageList();
+    // console.log('$store...', this.$store)
    
    
 },
