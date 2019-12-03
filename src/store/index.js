@@ -5,13 +5,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    // 省市列表
-    cityList:[]
+    // 省市列表数据
+    cityList:[],
+    cityIndex:[]
   },
   mutations: {
     getList(pay,load){
+      // 省市列表数据
       pay.cityList = load;
       console.log(pay.cityList)
+    },
+    getCityIndex(pay,load){
+      pa
     }
   },
   actions: {

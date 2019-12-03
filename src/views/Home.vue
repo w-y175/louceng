@@ -14,6 +14,7 @@
     <Right class="right" @jump="jumps" :list="list" />
   </div>
 </template>
+
 <script>
 import axios from "axios";
 import Right from "../components/right";
@@ -33,6 +34,7 @@ export default {
   },
   computed: {},
   methods: {
+    // 锚点连接
     jumps(item) {
       document.querySelector(".wrapper").scrollTop = document.querySelector(`#${item}`).offsetTop;
     },
@@ -86,6 +88,7 @@ export default {
   top: 0;
   overflow-y: scroll;
   z-index: 99;
+ 
 }
 h4 {
   width: 100%;
@@ -95,6 +98,7 @@ h4 {
 }
 .ele {
   line-height: 50px;
+  
 }
 .img {
   width: 40px;

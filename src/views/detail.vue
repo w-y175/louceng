@@ -47,7 +47,10 @@
 </template>
 <script>
 import axios from 'axios'
+import { create } from 'domain'
+
 export default {
+
     data(){
         return{
             datalist:[],
@@ -174,7 +177,7 @@ this.cur=index
     
 }
 .list{
-    position: relative;
+  
     width: 100%;
     height: 100%;
     
@@ -191,7 +194,7 @@ this.cur=index
 }
 .list .box{
     width: 100%;
-    height: 60px;
+    height: 80px;
     background: #fff;
     border-bottom: 1px solid #ccc;
 
@@ -211,9 +214,7 @@ this.cur=index
 }
 
 .list .cone{
-    position: absolute;
-    right: 20px;
-    bottom: 40px;
+   margin-left: 170px
 }
 .list .cone span{
     color: #c0c0c0;
@@ -267,10 +268,6 @@ this.cur=index
     font-size: 14px;
     color: #fff
 }
-
-
-
-
 
 
 
