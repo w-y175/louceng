@@ -1,11 +1,12 @@
 <template>
   <div class="wrapper">
     <div v-for="(item,index) in list" :key="index" class="ele" :id="item.letter">
-      <h4>{{item.letter}}</h4>
+      <p class="head">{{item.letter}}</p>
       <ul v-for="(item,index1) in item.children" :key="index1" class="bot"
         @click="addShow(item.MasterID)"
       >
         <img class="img" v-lazy="item.CoverPhoto" alt />
+       
         <div class="span">{{item.Name}}</div>
       </ul>
     </div>
@@ -46,7 +47,9 @@ export default {
       })
     }
   },
-  created() {},
+  created() {
+    
+  },
   mounted() {
     axios.get("https://baojia.chelun.com/v2-car-getMasterBrandList.html").then(res => {
         if (res.data.code == 1) {
@@ -72,12 +75,11 @@ export default {
   height: 100%;
   overflow-y: scroll;
   position: relative;
-  transform: all 1s;
 }
 .right {
   position: fixed;
-  right: 10px;
-  top: 15%;
+  right: 5px;
+  top: 20%;
 }
 .rightIndex{
   width: 300px;
@@ -90,31 +92,31 @@ export default {
   z-index: 99;
  
 }
-h4 {
+.head {
   width: 100%;
-  height: 30px;
-  line-height: 30px;
-  background: #ccc;
+  height: 20px;
+  color:  rgb(150, 150, 150);
+  line-height: 20px;
+  background: rgb(245, 245, 245);
+  padding-left: 15px;
+  font-size: 14px;
 }
 .ele {
   line-height: 50px;
-  
 }
 .img {
   width: 40px;
   height: 40px;
-  margin-left: 10px;
 }
 .bot {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid rgb(247, 243, 243);
+  border-bottom: 1px solid rgb(223, 223, 223);
+  margin-left: 15px;
 }
 .span {
-  margin-left: 15px;
-  padding: 10px 0;
-  line-height: 40px;
+  margin-left: 20px;
 }
 </style>
 

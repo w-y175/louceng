@@ -46,9 +46,7 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
-import { create } from 'domain'
-
+import axios from 'axios';
 export default {
 
     data(){
@@ -85,8 +83,6 @@ this.cur=index
     flex-direction: column;
     background: #f5f5f5;
     font-weight: none;
-
-
 }
 .img{
     width: 100%;

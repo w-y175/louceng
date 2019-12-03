@@ -14,6 +14,7 @@
     </div>
 </template>
 <script>
+import {mapState,mapMutations} from 'vuex'
 export default {
     props:{
         listIndex:{
@@ -24,7 +25,7 @@ export default {
         }
     },
     components:{
-
+        
     },
     data(){
         return {
@@ -35,8 +36,10 @@ export default {
 
     },
     methods:{
+        ...mapMutations(['getcarID']),
         detail(id){
-            this.$router.push({path:'/detail',query:{id}})
+            this.$router.push({path:'/detail',query:{id}});
+            this.getcarID(id)
         }
     },
     created(){
