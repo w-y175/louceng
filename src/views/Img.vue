@@ -1,5 +1,6 @@
 <template>
   <div class="page-img">
+     {{list}}
      <div class="select">
    <div class="left" @click='colour'>颜色</div>
    <div class="right">车款</div>
@@ -13,24 +14,36 @@
 </template>
 
 <script>
-import axios from 'axios'
+
+import {mapState,mapActions} from 'vuex'
 export default {
-data(){
-    return{
-        list:[]
-    }
+    computed:{
+    ...mapState({
+        list:state=>state.home.list
+       
+    })
 },
-methods: {
-    colour(){
+methods:{
+    ...mapActions({
+getImageList:'home/getImageList',
+colour(){
         this.$router.push('/colour')
     }
+    })
 },
-mounted(){
-    // axios.get("https://baojia.chelun.com/v2-car-getModelImageYearColor.html?,{params:{SerialID:id}}").then(res=>{
-    //             console.log(res.data.data)
-    //             this.list=res.data.data
-    //         })
-}
+created(){
+    this.getImageList(this.$route.query.id);
+    console.log('$store...', this.$store)
+   
+   
+},
+data(){
+    return{
+       
+    }
+},
+
+
 }
 </script>
 

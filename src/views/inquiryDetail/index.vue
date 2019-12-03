@@ -1,7 +1,7 @@
 <template>
-<div>
+
     <div>
-        <p class="topp">可向多个商家询问最低价,商家及时回复 ？</p>
+        <p class="topp">可向多个商家询问最低价,商家及时回复</p>
         <div  class="inquiryDetail">
             <img v-lazy="inquiryDetailList.Picture" slt="" class="inquiryDetailImg" />
             <div>
@@ -9,9 +9,6 @@
                 <p><span>{{inquiryDetailList.list&&inquiryDetailList.list[0].market_attribute.year}}</span>款 <span  v-show="inquiryDetailList">{{inquiryDetailList.list&&inquiryDetailList.list[0].car_name}}</span> </p>
                 </div>
                 <span>&gt;</span>
-
-            </div>
-
         </div>
         <p class="geren">个人信息</p>
         <form action="" class="input">
@@ -21,7 +18,6 @@
         </form>
         <p class="inquirybtn"><button class="btn">询最低价</button></p>
         <p class="geren">选择报价经销商</p>
-
     </div>
   
 </template>

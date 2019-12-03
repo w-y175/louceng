@@ -1,0 +1,10 @@
+import request from '@/utils/request';
+
+//汽车详情
+export let getInfoAndListById = (id)=>{
+    return request('/v2-car-getInfoAndListById.html',{params:{SerialID:id}})
+}
+//汽车图片
+export let getImageList = (id)=>{
+    return request('/v2-car-getImageList.html',{params:{SerialID:id}})
+}

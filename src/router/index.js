@@ -1,13 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
-
-import Input from '../views/Input.vue'
 import Img from '../views/Img.vue'
-import Colour from '../views/colour.vue'
-
-
+import Colour from '../views/colour'
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,7 +12,6 @@ const routes = [
     component: Home
   },
   {
-
     path:"/detail",
     component:()=>import('../views/detail')
   },
@@ -25,24 +19,16 @@ const routes = [
     path:'/inquiryDetail',
     component:()=>import('../views/inquiryDetail/')
   },
-
-   
-  {
-    path:"/input",
-    component:Input
-  },
-  {
-    path:"/img",
-    component:Img
-
-  },
   {
     path:'/city',
     component:()=>import('../views/city')
-
   },
   {
-    path:"/colour",
+    path:'/img',
+    component:Img
+  },
+  {
+    path:"colour",
     component:Colour
   }
 ]

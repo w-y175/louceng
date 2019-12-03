@@ -34,6 +34,7 @@ export default {
   },
   computed: {},
   methods: {
+    // 锚点连接
     jumps(item) {
       document.querySelector(".wrapper").scrollTop = document.querySelector(`#${item}`).offsetTop;
     },
