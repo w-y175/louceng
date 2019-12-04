@@ -21,7 +21,7 @@
       <!-- 导航 -->
       <div class="top">
         <span
-          v-for="(item,index) in list "
+          v-for="(item,index) in year"
           :key="index"
           :class="{active:cur==index}"
           @click="tab(index)"
@@ -34,8 +34,8 @@
           <p class="name">2019款{{item.car_name}}</p>
           <p class="type">{{item.horse_power}}马力{{item.gear_num}}档{{item.trans_type}}</p>
           <div class="cone">
-            <span class="max">指导价28.68万</span>
-            <span class="min">20.98万起</span>
+            <span class="max"></span>
+            <span class="min"></span>
           </div>
         </div>
 
@@ -56,7 +56,9 @@ import { mapActions, mapState } from "vuex";
 export default {
   computed: {
     ...mapState({
-      del: state => state.detail.del
+      del: state => state.detail.del,
+      currentList: state => state.detail.currentList,
+      year: state => state.detail.year
     })
   },
   methods: {
@@ -81,10 +83,8 @@ export default {
   },
   data() {
     return {
-      list: ["全部", "2019"],
-      cur: 0,
-
-      id: this.$route.query.id
+     cur: 0,
+     id: this.$route.query.id
     };
   }
 };
@@ -94,7 +94,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: #f5f5f5;
+  background: #f4f4f4;
   font-weight: none;
 }
 .img {
@@ -142,7 +142,7 @@ export default {
 }
 .left h5 {
   font-size: 13px;
-  color: #c0c0c0;
+  color: #999999;
   font-weight: none;
 }
 .con .right {
@@ -152,13 +152,13 @@ export default {
   top: 0.1rem;
 }
 .con .right button {
-  width: 180px;
-  height: 40px;
+  width: 185px;
+  height: 35px;
   background: #00afff;
   color: #fff;
   border-radius: 10px;
   border: none;
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 10px;
 }
 .page .count {
@@ -190,10 +190,11 @@ export default {
 }
 .list .title {
   width: 100%;
-  height: 30px;
-  font-size: 12px;
+  height: 0.5rem;
+  font-size: 14px;
   line-height: 30px;
-  color: #ccc;
+  color: #999999;
+  margin-left: 10px;
 }
 .list .box {
   width: 100%;
@@ -203,11 +204,12 @@ export default {
 }
 .list .box .name {
   font-size: 15px;
-  padding: 5px 10px;
+  padding: 8px 10px;
+  color: #3d3d3d;
 }
 .list .box .type {
-  font-size: 12px;
-  color: #ccc;
+  font-size: 14px;
+  color: #999999;
   padding: 0px 10px;
 }
 
@@ -215,7 +217,7 @@ export default {
   margin-left: 190px;
 }
 .list .cone span {
-  color: #c0c0c0;
+  color: #999999;
   font-size: 12px;
 }
 .list .cone .min {
