@@ -14,7 +14,7 @@
         <form action="" class="input">
             <p> 姓名 <input type="text" placeholder="请输入真实姓名" class="inputRight"></p>
             <p> 手机 <input type="text" placeholder="请输入手机号" class="inputRight"></p>
-            <p> 城市 <span class="inputspan" @click="jumpCity">{{title}} &gt;</span></p>
+            <p> 城市 <span class="inputspan" @click="jumpCity">{{titleEle}} &gt;</span></p>
         </form>
         <p class="inquirybtn"><button class="btn">询最低价</button></p>
         <p class="geren">选择报价经销商</p>
@@ -35,27 +35,28 @@ export default {
             id:this.$route.query.id,
             // 询问低价详情数据
              inquiryDetailList:{},
-             title:'北京',
         }
     },
     computed:{
-       
+       ...mapState(['titleEle'])
     },
     methods:{
-        ...mapActions(['setList']),
+        ...mapActions({
+            setList:'home/setList'
+        }),
         // 跳转到 城市页面
         jumpCity(){
-           this.$router.push({path:'/city'})
+           this.$router.push({path:'/city'});
+            this.setList();
         }
     },
     created(){
         let id = this.id;
-            console.log(this.$route.query.id);
         axios.get('https://baojia.chelun.com/v2-car-getInfoAndListById.html',{params:{SerialID:id}}).then(res=>{
             this.inquiryDetailList=res.data.data;
-            console.log(this.inquiryDetailList)
+            // console.log(this.inquiryDetailList)
         })
-     this.setList();
+    
         
     },
     mounted(){

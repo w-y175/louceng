@@ -5,7 +5,7 @@
       <img :src="del.CoverPhoto" alt />
       <p>{{del.pic_group_count}}张照片</p>
     </div>
-<!--指导价 -->
+    <!--指导价 -->
     <div class="con">
       <div class="left">
         <p>{{del.market_attribute&&del.market_attribute.dealer_price}}</p>
@@ -27,14 +27,14 @@
           @click="tab(index)"
         >{{item}}</span>
       </div>
-<!-- 内容 -->
+      <!-- 内容 -->
       <div class="list" v-for="(item,index) in del.list" :key="index">
         <div class="title">{{item.exhaust}}/{{item.exhaust_str}} {{item.inhale_type}}</div>
         <div class="box">
           <p class="name">2019款{{item.car_name}}</p>
           <p class="type">{{item.horse_power}}马力{{item.gear_num}}档{{item.trans_type}}</p>
           <div class="cone">
-            <span class="max">指导价 28.68万</span>
+            <span class="max">指导价28.68万</span>
             <span class="min">20.98万起</span>
           </div>
         </div>
@@ -45,16 +45,14 @@
       </div>
     </div>
     <!-- 底部 -->
-    <div class="footer" @click="skip" >
+    <div class="footer" @click="skip">
       <div class="one">{{del.BottomEntranceTitle}}</div>
       <div class="two">本地经销商为你报价</div>
     </div>
   </div>
 </template>
 <script>
-// import { create } from 'domain'
 import { mapActions, mapState } from "vuex";
-
 export default {
   computed: {
     ...mapState({
@@ -66,11 +64,11 @@ export default {
       getInfoAndListById: "home/getInfoAndListById",
       skip() {
         let id = this.id;
+
         this.$router.push({ path: "/inquiryDetail", query: { id } });
       },
       tab(index) {
         this.cur = index;
-       
       },
 
       img() {
@@ -93,7 +91,6 @@ export default {
 </script>
 <style>
 .page {
-  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -101,21 +98,24 @@ export default {
   font-weight: none;
 }
 .img {
-  width: 100%;
-  height: 176px;
   position: relative;
+  height: 6.4rem;
+  overflow: hidden;
 }
 .img img {
   width: 100%;
-  height: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: absolute;
 }
 .img p {
   position: absolute;
-  right: 10px;
-  bottom: 20px;
+  right: 0.1rem;
+  bottom: 0.3rem;
   color: #fff;
-  width: 90px;
-  height: 20px;
+  width: 1.9rem;
+  height: 0.4rem;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   font-size: 12px;
@@ -123,21 +123,22 @@ export default {
 }
 .con {
   width: 100%;
-  height: 60px;
+  height: 1.3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #fff;
+  position: relative;
 }
 .con .left {
   width: 50%;
-  height: 60px;
+  height: 1.3rem;
   margin-left: 10px;
 }
 .left p {
-  font-size: 18px;
+  font-size: 0.35rem;
   color: red;
-  margin-top: 10px;
+  margin-top: 0.3rem;
 }
 .left h5 {
   font-size: 13px;
@@ -146,13 +147,13 @@ export default {
 }
 .con .right {
   width: 50%;
-  height: 60px;
-  margin-top: 10px;
-  /* margin-left: 10px; */
+  position: absolute;
+  right: 0.1rem;
+  top: 0.1rem;
 }
 .con .right button {
   width: 180px;
-  height: 30px;
+  height: 40px;
   background: #00afff;
   color: #fff;
   border-radius: 10px;
@@ -173,7 +174,7 @@ export default {
 .page .count .top span {
   margin-left: 20px;
 }
-.active{
+.active {
   color: #00afff;
 }
 .page .count {
@@ -201,21 +202,21 @@ export default {
   border-bottom: 1px solid #ccc;
 }
 .list .box .name {
-  font-size: 16px;
-
+  font-size: 15px;
+  padding: 5px 10px;
 }
 .list .box .type {
-  font-size: 14px;
+  font-size: 12px;
   color: #ccc;
-  margin-top: 10px;
+  padding: 0px 10px;
 }
 
 .list .cone {
-  margin-left: 170px;
+  margin-left: 190px;
 }
 .list .cone span {
   color: #c0c0c0;
-  font-size: 14px;
+  font-size: 12px;
 }
 .list .cone .min {
   color: red;

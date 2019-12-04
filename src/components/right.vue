@@ -1,7 +1,8 @@
 <template>
     <div>
+        <span>#</span>
         <div v-for="(item,index) in list" :key="index">
-        <h4 @click="ancher(item.letter)">{{item.letter}}</h4>
+        <p class="right" @click="ancher(item.letter)">{{item.letter}}</p>
         </div>
     </div>
 </template>
@@ -41,5 +42,9 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-
+    .right{
+        font-size: 12px;
+        color: #666;
+        line-height: 20px;
+    }
 </style>

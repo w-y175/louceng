@@ -10,32 +10,48 @@
             {{item.CityName}}
             <span class="cityicn">&gt;</span></li>
         </ul>
+        <div v-show="tag" class="cityRight" @click="showBlock">
+            <cityIndex v-show="tag" class="cityIndex" />
+        </div>
+        
     </div>
 </template>
 <script>
-import {mapState,mapActions} from 'vuex';
+import {mapState,mapMutations,mapActions} from 'vuex';
+import cityIndex from '../components/cityIndex'
 export default {
     props:{
 
     },  
     components:{
-
+        cityIndex
     },
     data(){
         return {
-
+            tag:false,
         }
     },
     computed:{
-         ...mapState(['cityList'])
+         ...mapState({
+            cityList:state=>state.home.cityList
+         }),
     },
     methods:{
+        // ...mapMutations(['getId']),
+        ...mapActions({
+            setcityIndex:'home/setcityIndex'
+        }),
         cityIndex(id){
-            console.log(id,'id')
+            this.tag = true;
+        //    this.getId(id);
+           this.setcityIndex(id)
+        },
+        showBlock(){
+            this.tag = false;
         }
     },
     created(){
-        console.log(this.cityList)
+        
     },
     mounted(){
 
@@ -44,7 +60,9 @@ export default {
 </script>
 <style scoped lang="scss">
     .city{
-         overflow-y: scroll;
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
     }
     .autom{
         width: 100%;
@@ -57,7 +75,7 @@ export default {
     .beijing{
         line-height: 40px;
         padding-left: 15px;
-        font-size: 12px;
+        font-size: 13px;
     }
     .ul{
         line-height: 35px;
@@ -65,8 +83,8 @@ export default {
     }
     .ul li{
         border-bottom: 1px solid #ccc;
-        padding-left: 15px;
-        font-size: 12px;
+        padding-left: 12px;
+        font-size: 13px;
     }
     .cityicn{
         float: right;
@@ -74,5 +92,21 @@ export default {
         font-size: 18px;
         color: #ccc;
        
+    }
+    .cityRight{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        right: 0;
+        top: 0;
+        background: rgba($color: #000000, $alpha: .6)
+    }
+    .cityIndex{
+        width: 262px;
+        height: 100%;
+        position: fixed;
+        right: 0;
+        top: 0;
+        background:#fff;
     }
 </style>

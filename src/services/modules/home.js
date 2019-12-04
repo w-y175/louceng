@@ -12,3 +12,9 @@ export let getImageList = ()=>{
 export let getModelImageYearColor=()=>{
     return request('/v2-car-getModelImageYearColor.html?SerialID=2593')
 }
+//汽车车系
+// export let getInfoAndListById=()=>{
+//     return request('/v2-car-getInfoAndListById.html?SerialID=2593')
+// }
+
+

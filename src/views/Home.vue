@@ -1,16 +1,20 @@
 <template>
   <div class="wrapper">
     <div v-for="(item,index) in list" :key="index" class="ele" :id="item.letter">
-      <h4>{{item.letter}}</h4>
-      <ul v-for="(item,index1) in item.children" :key="index1" class="bot"
+      <p class="head">{{item.letter}}</p>
+      <ul
+        v-for="(item,index1) in item.children"
+        :key="index1"
+        class="bot"
         @click="addShow(item.MasterID)"
       >
         <img class="img" v-lazy="item.CoverPhoto" alt />
+
         <div class="span">{{item.Name}}</div>
       </ul>
     </div>
     <!-- 弹框数据 -->
-    <RightIndex v-if="tag" :listIndex=listIndex class="rightIndex" /> 
+    <RightIndex v-if="tag" :listIndex="listIndex" class="rightIndex" />
     <Right class="right" @jump="jumps" :list="list" />
   </div>
 </template>
@@ -18,7 +22,7 @@
 <script>
 import axios from "axios";
 import Right from "../components/right";
-import RightIndex from '../components/rightIndex'
+import RightIndex from "../components/rightIndex";
 export default {
   props: {},
   components: {
@@ -28,27 +32,36 @@ export default {
   data() {
     return {
       list: [],
-      listIndex:[],
-      tag:false,
+      listIndex: [],
+      tag: false
     };
   },
   computed: {},
   methods: {
     // 锚点连接
     jumps(item) {
-      document.querySelector(".wrapper").scrollTop = document.querySelector(`#${item}`).offsetTop;
+      document.querySelector(".wrapper").scrollTop = document.querySelector(
+        `#${item}`
+      ).offsetTop;
     },
-    addShow(id){
-      this.tag =!this.tag;
-      axios.get('https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html',{params:{MasterID:id}}).then(res=>{
-       this.listIndex = res.data.data;  
-      //  console.log(this.listIndex);
-      })
+    addShow(id) {
+      this.tag = !this.tag;
+      axios
+        .get(
+          "https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html",
+          { params: { MasterID: id } }
+        )
+        .then(res => {
+          this.listIndex = res.data.data;
+          //  console.log(this.listIndex);
+        });
     }
   },
   created() {},
   mounted() {
-    axios.get("https://baojia.chelun.com/v2-car-getMasterBrandList.html").then(res => {
+    axios
+      .get("https://baojia.chelun.com/v2-car-getMasterBrandList.html")
+      .then(res => {
         if (res.data.code == 1) {
           res.data.data.map(item => {
             let letter = item.Spelling[0];
@@ -62,9 +75,9 @@ export default {
         } else {
           alert(res.data.msg);
         }
-      })
+      });
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .wrapper {
@@ -72,14 +85,13 @@ export default {
   height: 100%;
   overflow-y: scroll;
   position: relative;
-  transform: all 1s;
 }
 .right {
   position: fixed;
-  right: 10px;
-  top: 15%;
+  right: 5px;
+  top: 20%;
 }
-.rightIndex{
+.rightIndex {
   width: 300px;
   height: 100%;
   background: #fff;
@@ -88,33 +100,32 @@ export default {
   top: 0;
   overflow-y: scroll;
   z-index: 99;
- 
 }
-h4 {
+.head {
   width: 100%;
-  height: 30px;
-  line-height: 30px;
-  background: #ccc;
+  height: 20px;
+  color: rgb(150, 150, 150);
+  line-height: 20px;
+  background: rgb(245, 245, 245);
+  padding-left: 15px;
+  font-size: 14px;
 }
 .ele {
   line-height: 50px;
-  
 }
 .img {
   width: 40px;
   height: 40px;
-  margin-left: 10px;
 }
 .bot {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: 1px solid rgb(247, 243, 243);
+  border-bottom: 1px solid rgb(223, 223, 223);
+  margin-left: 15px;
 }
 .span {
-  margin-left: 15px;
-  padding: 10px 0;
-  line-height: 40px;
+  margin-left: 20px;
 }
 </style>
 
