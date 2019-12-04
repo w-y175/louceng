@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div v-for="(item,index) in list" :key="index" class="ele" :id="item.letter">
+    <div v-for="(item,index) in carList" :key="index" class="ele" :id="item.letter">
       <p class="head">{{item.letter}}</p>
       <ul v-for="(item,index1) in item.children" :key="index1" class="bot"
         @click="addShow(item.MasterID)"
@@ -11,15 +11,16 @@
       </ul>
     </div>
     <!-- 弹框数据 -->
-    <RightIndex v-if="tag" :listIndex=listIndex class="rightIndex" /> 
-    <Right class="right" @jump="jumps" :list="list" />
+    <RightIndex v-if="tag" :listIndex=carIndexList class="rightIndex" /> 
+    <!-- <Right class="right" @jump="jumps" :list="list" /> -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import Right from "../components/right";
-import RightIndex from '../components/rightIndex'
+import RightIndex from '../components/rightIndex';
+import {mapActions,mapState} from 'vuex'
 export default {
   props: {},
   components: {
@@ -28,44 +29,35 @@ export default {
   },
   data() {
     return {
-      list: [],
-      listIndex:[],
       tag:false,
     };
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      carList:state=>state.Home.carList,
+      carIndexList:state=>state.Home.carIndexList
+    })
+  },
   methods: {
+    ...mapActions({
+        getCarlist:'Home/getCarlist',
+        getCarIndexlist:'Home/getCarIndexlist'
+    }),
     // 锚点连接
     jumps(item) {
       document.querySelector(".wrapper").scrollTop = document.querySelector(`#${item}`).offsetTop;
     },
     addShow(id){
       this.tag =!this.tag;
-      axios.get('https://baojia.chelun.com/v2-car-getMakeListByMasterBrandId.html',{params:{MasterID:id}}).then(res=>{
-       this.listIndex = res.data.data;  
-      //  console.log(this.listIndex);
-      })
+      this.getCarIndexlist(id);
+      console.log(id)
     }
   },
   created() {
-    
+      this.getCarlist();
   },
   mounted() {
-    axios.get("https://baojia.chelun.com/v2-car-getMasterBrandList.html").then(res => {
-        if (res.data.code == 1) {
-          res.data.data.map(item => {
-            let letter = item.Spelling[0];
-            let newArr = res.data.data.filter(
-              item => item.Spelling[0] == letter
-            );
-            if (this.list.findIndex(item => item.letter == letter) == -1) {
-              this.list.push({ letter, children: newArr });
-            }
-          });
-        } else {
-          alert(res.data.msg);
-        }
-      })
+   
   }
 }
 </script>

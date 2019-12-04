@@ -9,7 +9,7 @@
     </div>
 </template>
 <script>
-import {mapState,mapMutations} from 'vuex'
+import {mapState,mapMutations} from 'vuex';
 export default {
     props:{
 
@@ -23,18 +23,23 @@ export default {
         }
     },
     computed:{
-        ...mapState(['cityIndex','carID'])
+        ...mapState({
+            cityIndex:state=>state.Home.cityIndex,
+            titleEle:state=>state.Home.titleEle,
+        })
     },
     methods:{
-        ...mapMutations(['getTitle']),
+        ...mapMutations({
+            getTitle:'Home/getTitle'
+        }),
         upDateTitle(name){
-            this.getTitle(name);
-            let carID = this.carID;
-            this.$router.push({path:'/inquiryDetail',query:{id:carID}})
+            let id = localStorage.getItem('SerialID')
+            this.$router.push({path:'/inquiryDetail',query:{id}});
+            this.getTitle(name)
         }
     },
     created(){
-
+        // console.log(this.$store)
     },
     mounted(){
 

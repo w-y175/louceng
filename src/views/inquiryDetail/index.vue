@@ -32,15 +32,18 @@ export default {
         return {
             id:this.$route.query.id,
             // 询问低价详情数据
-             inquiryDetailList:{},
         }
     },
     computed:{
-       ...mapState(['titleEle'])
+       ...mapState({
+           inquiryDetailList:state=>state.Home.inquiryDetailList,
+           titleEle:state=>state.Home.titleEle,
+       })
     },
     methods:{
         ...mapActions({
-            setList:'home/setList'
+            setList:'Home/setList',
+            getInquiryDetailList:'Home/getInquiryDetailList'
         }),
         // 跳转到 城市页面
         jumpCity(){
@@ -50,11 +53,8 @@ export default {
     },
     created(){
         let id = this.id;
-        axios.get('https://baojia.chelun.com/v2-car-getInfoAndListById.html',{params:{SerialID:id}}).then(res=>{
-            this.inquiryDetailList=res.data.data;
-            // console.log(this.inquiryDetailList)
-        })
-    
+        this.getInquiryDetailList(id)
+    console.log(this.$store)
         
     },
     mounted(){

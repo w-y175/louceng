@@ -36,10 +36,11 @@ export default {
 
     },
     methods:{
-        ...mapMutations(['getcarID']),
+        // ...mapMutations(['getcarID']),
         detail(id){
+            localStorage.setItem('SerialID',id)
             this.$router.push({path:'/detail',query:{id}});
-            this.getcarID(id)
+            // this.getcarID(id)
         }
     },
     created(){

@@ -33,13 +33,13 @@ export default {
     },
     computed:{
          ...mapState({
-            cityList:state=>state.home.cityList
+            cityList:state=>state.Home.cityList
          }),
     },
     methods:{
         // ...mapMutations(['getId']),
         ...mapActions({
-            setcityIndex:'home/setcityIndex'
+            setcityIndex:'Home/setcityIndex'
         }),
         cityIndex(id){
             this.tag = true;
