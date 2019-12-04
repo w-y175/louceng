@@ -1,55 +1,38 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createLogger from 'vuex/dist/logger';
+import detail from './modules/detail'
+import color from './modules/color'
 import Home from './modules/home'
+import creareLogger from 'vuex/dist/logger';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   // state: {
-  //   // 省市列表
+  //   // 省市列表数据
   //   cityList:[],
-  //   //  省市id
-  //   id:'',
-  //   // 城市数据
-  //   cityIndex:[],
-  //   // 车系ID
-  //   carID:'',
-  //   titleEle:'北京'
+  //   cityIndex:[]
   // },
   // mutations: {
-  //    // 省市列表
   //   getList(pay,load){
+  //     // 省市列表数据
   //     pay.cityList = load;
-  //     // console.log(pay.cityList)
+  //     console.log(pay.cityList)
   //   },
-  //   // 获取对应城市
-  //   getcityIndex(pay,load){
-  //     pay.cityIndex = load
-  //   },
-  //   // 切换城市
-  //   getTitle(pay,load){
-  //     pay.titleEle = load;
-  //   },
-  //   // 获取车系ID
-  //   getcarID(pay,load){
-  //     pay.carID = load;
+  //   getCityIndex(pay,load){
+      
   //   }
   // },
   // actions: {
   //   setList({commit}){
-  //       axios.get('https://baojia.chelun.com/v1-city-alllist.html').then(res=>{
-  //         commit('getList',res.data.data);
-  //     })
-  //   },
-  //   setcityIndex({commit}){
-  //     let id = this.state.id;
-  //     axios.get('https://baojia.chelun.com/v1-city-alllist.html',{params:{provinceid:id}}).then(res=>{
-  //         commit('getcityIndex',res.data.data);
-  //     })
+  //     axios.get('https://baojia.chelun.com/v1-city-alllist.html').then(res=>{
+  //       commit('getList',res.data.data);
+  //   })
   //   }
   // },
   modules: {
-    Home
+    Home,
+    detail,
+    color
   },
-  plugins:[createLogger()]
+  plugins: [creareLogger()]
 })

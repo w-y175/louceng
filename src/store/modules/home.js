@@ -46,10 +46,6 @@ const mutations = {
   getTitle(pay,load){
       pay.titleEle=load;
   },
-  // 获取车系ID
-  //   getcarID(pay,load){
-  //     pay.carID = load;
-  // }
 }
 
 const actions = {

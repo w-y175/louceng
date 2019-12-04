@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,6 +21,14 @@ const routes = [
   {
     path:'/city',
     component:()=>import('../views/city')
+  },
+  {
+    path:'/img',
+    component:()=>import('../views/Img')
+  },
+  {
+    path:"/colour",
+    component:()=>import('../views/colour')
   }
 ]
 

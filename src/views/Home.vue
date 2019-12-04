@@ -2,11 +2,14 @@
   <div class="wrapper">
     <div v-for="(item,index) in carList" :key="index" class="ele" :id="item.letter">
       <p class="head">{{item.letter}}</p>
-      <ul v-for="(item,index1) in item.children" :key="index1" class="bot"
+      <ul
+        v-for="(item,index1) in item.children"
+        :key="index1"
+        class="bot"
         @click="addShow(item.MasterID)"
       >
         <img class="img" v-lazy="item.CoverPhoto" alt />
-       
+
         <div class="span">{{item.Name}}</div>
       </ul>
     </div>
@@ -45,7 +48,9 @@ export default {
     }),
     // 锚点连接
     jumps(item) {
-      document.querySelector(".wrapper").scrollTop = document.querySelector(`#${item}`).offsetTop;
+      document.querySelector(".wrapper").scrollTop = document.querySelector(
+        `#${item}`
+      ).offsetTop;
     },
     addShow(id){
       this.tag =!this.tag;
@@ -59,7 +64,7 @@ export default {
   mounted() {
    
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .wrapper {
@@ -73,7 +78,7 @@ export default {
   right: 5px;
   top: 20%;
 }
-.rightIndex{
+.rightIndex {
   width: 300px;
   height: 100%;
   background: #fff;
@@ -82,12 +87,11 @@ export default {
   top: 0;
   overflow-y: scroll;
   z-index: 99;
- 
 }
 .head {
   width: 100%;
   height: 20px;
-  color:  rgb(150, 150, 150);
+  color: rgb(150, 150, 150);
   line-height: 20px;
   background: rgb(245, 245, 245);
   padding-left: 15px;

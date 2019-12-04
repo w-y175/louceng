@@ -1,6 +1,7 @@
 <template>
+
     <div>
-        <p class="topp">可向多个商家询问最低价,商家及时回复 ？</p>
+        <p class="topp">可向多个商家询问最低价,商家及时回复</p>
         <div  class="inquiryDetail">
             <img v-lazy="inquiryDetailList.Picture" slt="" class="inquiryDetailImg" />
             <div>
@@ -18,6 +19,7 @@
         <p class="inquirybtn"><button class="btn">询最低价</button></p>
         <p class="geren">选择报价经销商</p>
     </div>
+  
 </template>
 <script>
 import axios from 'axios';
