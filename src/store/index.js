@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import home from './modules/home'
+import detail from './modules/detail'
+import color from './modules/color'
 import creareLogger from 'vuex/dist/logger';
 Vue.use(Vuex)
 
@@ -29,7 +30,8 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    home
+    detail,
+    color
   },
   plugins: [creareLogger()]
 })

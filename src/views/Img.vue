@@ -1,69 +1,47 @@
 <template>
   <div class="page-img">
-    
-     <div class="select">
-   <div class="left" @click='colour'>颜色</div>
-   <div class="right">车款</div>
-     </div>
-     <div class="image">
-         <ul class="ul">
-           <li></li>
-         </ul>
-     </div>
+    <div class="select">
+      <div class="left" @click="colour">颜色</div>
+      <div class="right">车款</div>
+    </div>
+    <div class="image">
+      <ul class="ul">
+        <li></li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-
-import {mapState,mapActions} from 'vuex'
 export default {
-    computed:{
-    ...mapState({
-        list:state=>state.home.list
-       
-    })
-},
-methods:{
-    ...mapActions({
-getImageList:'home/getImageList',
-colour(){
-        this.$router.push('/colour')
+  methods: {
+    colour() {
+      this.$router.push("/colour");
     }
-    })
-},
-created(){
-    this.getImageList();
-    // console.log('$store...', this.$store)
-   
-   
-},
-data(){
-    return{
-       
-    }
-},
+  },
 
-
-}
+  data() {
+    return {};
+  }
+};
 </script>
 
 <style>
-.page-img{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background: #f5f5f5
+.page-img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #f5f5f5;
 }
-.select{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    height: 30px;
+.select {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 30px;
   line-height: 30px;
-    font-size: 14px;
-    background: #fff;
-
+  font-size: 14px;
+  background: #fff;
 }
 </style>

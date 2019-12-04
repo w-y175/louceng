@@ -16,7 +16,6 @@
         <div class="in">
           <span v-for="(item,index) in color[list[cur]]" :key="index">
             <i :style="{'background':item.Value}"></i>
-
             {{item.Name}}
           </span>
         </div>
@@ -35,7 +34,7 @@ export default {
   },
   computed: {
     ...mapState({
-      color: state => state.home.color
+      color: state => state.color.color
     }),
     list() {
       return Object.keys(this.color);
@@ -44,7 +43,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getModelImageYearColor: "home/getModelImageYearColor"
+      getModelImageYearColor: "color/getModelImageYearColor"
     }),
     tab(index) {
       this.cur = index;

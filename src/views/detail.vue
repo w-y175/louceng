@@ -56,12 +56,12 @@ import { mapActions, mapState } from "vuex";
 export default {
   computed: {
     ...mapState({
-      del: state => state.home.del
+      del: state => state.detail.del
     })
   },
   methods: {
     ...mapActions({
-      getInfoAndListById: "home/getInfoAndListById",
+      getInfoAndListById: "detail/getInfoAndListById",
       skip() {
         let id = this.id;
 
