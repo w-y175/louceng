@@ -24,7 +24,7 @@ export default {
     },
     computed:{
         ...mapState({
-            cityIndex:state=>state.Home.cityIndex,
+            cityIndex:state=>state.city.cityIndex,
             titleEle:state=>state.Home.titleEle,
         })
     },

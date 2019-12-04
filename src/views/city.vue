@@ -21,7 +21,7 @@ import {mapState,mapMutations,mapActions} from 'vuex';
 import cityIndex from '../components/cityIndex'
 export default {
     props:{
-
+        
     },  
     components:{
         cityIndex
@@ -33,17 +33,15 @@ export default {
     },
     computed:{
          ...mapState({
-            cityList:state=>state.Home.cityList
+            cityList:state=>state.city.cityList
          }),
     },
     methods:{
-        // ...mapMutations(['getId']),
         ...mapActions({
-            setcityIndex:'Home/setcityIndex'
+            setcityIndex:'city/setcityIndex'
         }),
         cityIndex(id){
             this.tag = true;
-        //    this.getId(id);
            this.setcityIndex(id)
         },
         showBlock(){

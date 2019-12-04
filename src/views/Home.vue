@@ -15,7 +15,7 @@
     </div>
     <!-- 弹框数据 -->
     <RightIndex v-if="tag" :listIndex=carIndexList class="rightIndex" /> 
-    <!-- <Right class="right" @jump="jumps" :list="list" /> -->
+    <Right class="right" @jump="jumps" :list="carList" />
   </div>
 </template>
 
@@ -79,7 +79,7 @@ export default {
   top: 20%;
 }
 .rightIndex {
-  width: 300px;
+  width: 280px;
   height: 100%;
   background: #fff;
   position: fixed;
@@ -98,7 +98,7 @@ export default {
   font-size: 14px;
 }
 .ele {
-  line-height: 50px;
+  line-height: 49.5px;
 }
 .img {
   width: 40px;
@@ -113,6 +113,7 @@ export default {
 }
 .span {
   margin-left: 20px;
+  font-size: 16px;
 }
 </style>
 

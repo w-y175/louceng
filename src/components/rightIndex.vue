@@ -1,11 +1,11 @@
 <template>
     <div>
         <ul v-for="(item,index) in listIndex" :key="index" class="ul">
-            <h5>{{item.GroupName}}</h5>
+            <p class="GroupName">{{item.GroupName}}</p>
             <li v-for="(val,ind) in item.GroupList" :key="ind" class="indexTop"
             @click="detail(val.SerialID)"
             ><img v-lazy="val.Picture" slt="" class="indexImg" />
-            <div>
+            <div class="imgpick">
                 <p>{{val.AliasName}}</p>
                 <span class="span">{{val.DealerPrice}}</span>
                 </div>
@@ -53,24 +53,37 @@ export default {
 </script>
 <style scoped lang="scss">
     .ul{
-        line-height: 35px;
-        
+        line-height: 30px;
     }
     .indexImg{
         width: 90px;
         height: 60px;
-        margin:0 20px 0 15px;
+        margin:5px 0 0 15px;
     }
     .indexTop{
+        height: 70px;
         display: flex;
-      border-bottom: 1px solid #666;
+        border-bottom: 1px solid rgb(231, 231, 231);
     }
     .span{
         color: red;
+        font-size: 14px;
     }
-    h5{
+    .GroupName{
+        height: 24px;
+        line-height: 24px;
         width: 100%;
+        font-size: 14px;
         background: rgb(231, 231, 231);
-         padding-left: 15px;
+        padding-left: 15px;
+        color: #666;
+    }
+    .imgpick{
+        height: 46px;
+        margin-left: 5px;
+        line-height: 23px;
+        font-size: 16px;
+        margin-top: 10px;
+        color: rgb(131, 131, 131);
     }
 </style>

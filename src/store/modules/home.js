@@ -1,16 +1,10 @@
 import {
-  setList,
-  setcityIndex,
   getCarlist,
   getCarIndexlist,
   getInquiryDetailList
 } from '@/services/index';
 
 const state = {
-  // 省市列表
-  cityList: [],
-  // 城市数据
-  cityIndex: [],
   // 首页车系数据
   carList: [],
   // 首页对应车系数据
@@ -21,15 +15,6 @@ const state = {
 }
 
 const mutations = {
-  // 省市列表
-  getList(pay, load) {
-    pay.cityList = load;
-    // console.log(pay.cityList)
-  },
-  // 获取对应城市
-  getcityIndex(pay, load) {
-    pay.cityIndex = load
-  },
   // 首页车系
   setCarlist(pay, load) {
     pay.carList.push(load)
@@ -49,20 +34,6 @@ const mutations = {
 }
 
 const actions = {
-  async setList({
-    commit
-  }) {
-    let res = await setList();
-    commit('getList', res.data);
-  },
-
-  async setcityIndex({
-    commit
-  }, payload) {
-    let res = await setcityIndex(payload);
-    commit('getcityIndex', res.data);
-  },
-
   async getCarlist({
     commit
   }) {

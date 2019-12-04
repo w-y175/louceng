@@ -64,13 +64,11 @@ export default {
       getInfoAndListById: "detail/getInfoAndListById",
       skip() {
         let id = this.id;
-
         this.$router.push({ path: "/inquiryDetail", query: { id } });
       },
       tab(index) {
         this.cur = index;
       },
-
       img() {
         this.$router.push("/img");
       }
@@ -83,7 +81,6 @@ export default {
     return {
       list: ["全部", "2019"],
       cur: 0,
-
       id: this.$route.query.id
     };
   }

@@ -45,6 +45,6 @@ export default {
     .right{
         font-size: 12px;
         color: #666;
-        line-height: 20px;
+        line-height: 18px;
     }
 </style>

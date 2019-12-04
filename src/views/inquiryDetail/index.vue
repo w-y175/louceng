@@ -16,7 +16,9 @@
             <p> 手机 <input type="text" placeholder="请输入手机号" class="inputRight"></p>
             <p> 城市 <span class="inputspan" @click="jumpCity">{{titleEle}} &gt;</span></p>
         </form>
-        <p class="inquirybtn"><button class="btn">询最低价</button></p>
+        <div class="btnXun">
+            <p class="inquirybtn"><button class="btn">询最低价</button></p>
+        </div>
         <p class="geren">选择报价经销商</p>
     </div>
   
@@ -44,7 +46,7 @@ export default {
     },
     methods:{
         ...mapActions({
-            setList:'Home/setList',
+            setList:'city/setList',
             getInquiryDetailList:'Home/getInquiryDetailList'
         }),
         // 跳转到 城市页面
@@ -100,20 +102,19 @@ export default {
     .input p{
         border-bottom: 1px solid #ccc;
         padding-left: 10px;
-         align-items: center;
     }
     .inputRight{
         outline: none;
         border: none;
-        height: 35px;
-        width: 130px;
+        padding-right: 10px;
+        width: 312px;
         font-size: 16px;
-        margin-top: 5px;
         float: right;
+        line-height: 45px;
+        text-align: right;
     }
     .inputspan{
         font-size: 16px;
-        margin-top: 5px;
         float: right;
         margin-right: 10px;
     }
@@ -121,13 +122,21 @@ export default {
         text-align: center;
         line-height: 45px;
     }
+    .btnXun{
+        width: 100%;
+        height: 64px;
+        line-height: 64px;
+        text-align: center;
+        padding: 15px 0 14px;
+    }
     .btn{
-        margin-left: 36px;
-        width: 280px;
+        font-size: 16px;
+        color: #fff;
+        width: 80%;
+        background: #3aacff;
         height: 35px;
-        background: rgb(133, 141, 218);
-        border: none;
-        outline: none;
         border-radius: 5px;
+        outline: none;
+        border: none;
     }
 </style>
