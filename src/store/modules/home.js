@@ -17,7 +17,7 @@ const state = {
 const mutations = {
   // 首页车系
   setCarlist(pay, load) {
-    pay.carList.push(load)
+    pay.carList.push(load);
   },
   // 车款数据
   setCarIndexList(pay, load) {

@@ -14,7 +14,9 @@
       </ul>
     </div>
     <!-- 弹框数据 -->
-    <RightIndex v-if="tag" :listIndex=carIndexList class="rightIndex" /> 
+    <div  class="carIndex" ref="AddRight">
+      <RightIndex  :listIndex=carIndexList class="rightIndex" /> 
+    </div>
     <Right class="right" @jump="jumps" :list="carList" />
   </div>
 </template>
@@ -54,6 +56,8 @@ export default {
     },
     addShow(id){
       this.tag =!this.tag;
+      this.$refs.AddRight.style.width = '75%';
+
       this.getCarIndexlist(id);
       console.log(id)
     }
@@ -73,20 +77,21 @@ export default {
   overflow-y: scroll;
   position: relative;
 }
-.right {
-  position: fixed;
-  right: 5px;
-  top: 20%;
-}
-.rightIndex {
-  width: 280px;
+.carIndex{
+  width: 0;
   height: 100%;
+  transition: all 1s ease;  
   background: #fff;
   position: fixed;
   right: 0;
   top: 0;
   overflow-y: scroll;
   z-index: 99;
+}
+.right {
+  position: fixed;
+  right: 5px;
+  top: 20%;
 }
 .head {
   width: 100%;
