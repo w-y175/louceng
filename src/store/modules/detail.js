@@ -72,7 +72,7 @@ const mutations = {
             // 聚合key相同的车款数据
             currentList = formatCarList(currentList);
             state.currentList = currentList;
-            console.log(currentList)
+          
         } else {
             alert(payload.msg)
         }
@@ -82,7 +82,7 @@ const mutations = {
 const actions = {
     async getInfoAndListById({ commit }, payload) {
         let res = await getInfoAndListById(payload)
-console.log(res)
+
         commit("upList", res)
     }
 }

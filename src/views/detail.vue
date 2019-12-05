@@ -21,7 +21,7 @@
       <!-- 导航 -->
       <div class="top">
         <span
-          v-for="(item,index) in current"
+          v-for="(item,index) in year"
           :key="index"
           :class="{active:cur==index}"
           @click="tab(index)"
@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getInfoAndListById: "detail/getInfoAndListById",
+      getInfoAndListById: "detail/getInfoAndListById"}),
       skip() {
         let id = this.id;
 
@@ -78,7 +78,7 @@ export default {
       img() {
         this.$router.push("/img");
       }
-    })
+    
   },
   created() {
     this.getInfoAndListById(this.$route.query.id);
