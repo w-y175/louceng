@@ -21,7 +21,7 @@
       <!-- 导航 -->
       <div class="top">
         <span
-          v-for="(item,index) in year"
+          v-for="(item,index) in current"
           :key="index"
           :class="{active:cur==index}"
           @click="tab(index)"
@@ -72,6 +72,7 @@ export default {
       },
       tab(index) {
         this.cur = index;
+        
       },
 
       img() {
