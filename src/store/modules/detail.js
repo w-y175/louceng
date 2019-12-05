@@ -28,7 +28,7 @@ function sortCarList(list) {
 // 格式化数据
 function formatCarList(list) {
     list = list.map(item => {
-        item.key = `${item.exhaust_str}/${item.max_power_str} ${item.inhale_type}`;
+        item.key = `${item.exhaust_str}/${item.max_power_str}${item.inhale_type}`;
         return item;
     })
     let newList = [];
@@ -55,7 +55,8 @@ const mutations = {
             state.del = payload.data
           //拿到年份
             let year = payload.data.list.map(item => item.market_attribute.year);
-            state.year = state.year.concat([...new Set(year)]);
+            state.year = [...new Set(state.year.concat([...new Set(year)]))];
+           
 
             // 拿到当前选择年份的数据
             let currentList = [];
@@ -81,7 +82,7 @@ const mutations = {
 const actions = {
     async getInfoAndListById({ commit }, payload) {
         let res = await getInfoAndListById(payload)
-
+console.log(res)
         commit("upList", res)
     }
 }

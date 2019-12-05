@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page" v-if="(Object.keys(del).length)">
     <!-- 图片 -->
     <div class="img" @click="img">
       <img :src="del.CoverPhoto" alt />
@@ -8,8 +8,8 @@
     <!--指导价 -->
     <div class="con">
       <div class="left">
-        <p>{{del.market_attribute&&del.market_attribute.dealer_price}}</p>
-        <h5>指导价{{del.market_attribute&&del.market_attribute.official_refer_price}}</h5>
+        <p>{{del.market_attribute.dealer_price}}</p>
+        <h5>指导价{{del.market_attribute.official_refer_price}}</h5>
       </div>
       <!--询问低价 -->
       <div class="right">
@@ -28,14 +28,14 @@
         >{{item}}</span>
       </div>
       <!-- 内容 -->
-      <div class="list" v-for="(item,index) in del.list" :key="index">
-        <div class="title">{{item.exhaust}}/{{item.exhaust_str}} {{item.inhale_type}}</div>
+      <div class="list" v-for="(item,index) in currentList" :key="index">
+        <div class="title">{{item.key}}</div>
         <div class="box">
-          <p class="name">2019款{{item.car_name}}</p>
-          <p class="type">{{item.horse_power}}马力{{item.gear_num}}档{{item.trans_type}}</p>
+          <p class="name">{{item.list[0].market_attribute.year}}款{{item.list[0].car_name}}</p>
+          <p class="type">{{item.list[0].horse_power}}马力{{item.list[0].gear_num}}档{{item.list[0].trans_type}}</p>
           <div class="cone">
-            <span class="max"></span>
-            <span class="min"></span>
+            <span class="max">指导价{{item.list[0].market_attribute.official_refer_price}}</span>
+            <span class="min">{{item.list[0].market_attribute.dealer_price_min}}起</span>
           </div>
         </div>
 
@@ -47,7 +47,7 @@
     <!-- 底部 -->
     <div class="footer" @click="skip">
       <div class="one">{{del.BottomEntranceTitle}}</div>
-      <div class="two">本地经销商为你报价</div>
+      <div class="two">{{del.BottomEntranceSubTitle}}</div>
     </div>
   </div>
 </template>
@@ -58,7 +58,8 @@ export default {
     ...mapState({
       del: state => state.detail.del,
       currentList: state => state.detail.currentList,
-      year: state => state.detail.year
+      year: state => state.detail.year,
+      current: state => state.detail.current
     })
   },
   methods: {
@@ -80,11 +81,13 @@ export default {
   },
   created() {
     this.getInfoAndListById(this.$route.query.id);
+
+   
   },
   data() {
     return {
-     cur: 0,
-     id: this.$route.query.id
+      cur: 0,
+      id: this.$route.query.id
     };
   }
 };
@@ -96,6 +99,7 @@ export default {
   flex-direction: column;
   background: #f4f4f4;
   font-weight: none;
+  
 }
 .img {
   position: relative;
@@ -161,9 +165,7 @@ export default {
   font-size: 16px;
   margin-top: 10px;
 }
-.page .count {
-  width: 100%;
-}
+
 .page .count .top {
   margin-top: 10px;
   width: 100%;
@@ -182,7 +184,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow-x:hidden 
 }
 .list {
   width: 100%;
