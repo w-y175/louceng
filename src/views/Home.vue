@@ -14,9 +14,9 @@
       </ul>
     </div>
     <!-- 弹框数据 -->
-    <div  class="carIndex" ref="AddRight">
-      <RightIndex  :listIndex=carIndexList class="rightIndex" /> 
-    </div>
+    <transition name="slide-fade">
+      <RightIndex v-show="tag" class="carIndex" :listIndex=carIndexList /> 
+    </transition>
     <Right class="right" @jump="jumps" :list="carList" />
   </div>
 </template>
@@ -25,7 +25,7 @@
 import axios from "axios";
 import Right from "../components/right";
 import RightIndex from "../components/rightIndex";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState ,mapMutations} from "vuex";
 export default {
   props: {},
   components: {
@@ -34,19 +34,23 @@ export default {
   },
   data() {
     return {
-      tag: false
+      
     };
   },
   computed: {
     ...mapState({
       carList: state => state.Home.carList,
-      carIndexList: state => state.Home.carIndexList
+      carIndexList: state => state.Home.carIndexList,
+      tag:state => state.Home.tag,
     })
   },
   methods: {
     ...mapActions({
       getCarlist: "Home/getCarlist",
-      getCarIndexlist: "Home/getCarIndexlist"
+      getCarIndexlist: "Home/getCarIndexlist",
+    }),
+    ...mapMutations({
+      getTag:'Home/getTag'
     }),
     // 锚点连接
     jumps(item) {
@@ -55,11 +59,9 @@ export default {
       ).offsetTop;
     },
     addShow(id){
-      this.tag =!this.tag;
-      this.$refs.AddRight.style.width = '75%';
-
+      
+      this.getTag(true)
       this.getCarIndexlist(id);
-      console.log(id);
     }
   },
   created() {
@@ -75,10 +77,15 @@ export default {
   overflow-y: scroll;
   position: relative;
 }
+.slide-fade-enter-active,.slide-fade-leave-active {
+  transition: all .3s ease;// cubic-bezier(0.3, 0.3, 0.3, 0.3) 开始到结束过程的时间
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(75%);
+}
 .carIndex{
-  width: 0;
+  width: 280px;
   height: 100%;
-  transition: all 1s ease;  
   background: #fff;
   position: fixed;
   right: 0;

@@ -1,18 +1,21 @@
-
-
-import { getInfoAndListById } from "../../services/index"
+import {
+    getInfoAndListById
+} from "../../services/index"
+import {
+    stat
+} from "fs";
 
 //定义一个list数据
 const state = {
-    del: {}, 
-    current: '全部',// 当前选择年份 
+    del: {},
+    current: '全部', // 当前选择年份 
     year: ['全部'], // 所有的年份
-    currentList: [],// 当前年份的车款数据  
+    currentList: [], // 当前年份的车款数据  
 }
 
 // 给车款排序
 function sortCarList(list) {
-   list.sort((a, b) => {
+    list.sort((a, b) => {
         if (a.exhaust_str == b.exhaust_str) {
             if (a.max_power_str == b.max_power_str) {
                 return b.inhale_type > a.inhale_type;
@@ -54,9 +57,11 @@ const mutations = {
     upList(state, payload) {
         if (payload.code == 1) {
             state.del = payload.data
-          //拿到年份
+            //拿到年份
             let year = payload.data.list.map(item => item.market_attribute.year);
             state.year = [...new Set(state.year.concat([...new Set(year)]))];
+
+
             // 拿到当前选择年份的数据
             let currentList = [];
             if (state.current == '全部') {
@@ -71,14 +76,21 @@ const mutations = {
             // 聚合key相同的车款数据
             currentList = formatCarList(currentList);
             state.currentList = currentList;
+            console.log(state.currentList)
         } else {
             alert(payload.msg)
         }
+    },
+    setCurrent(state, payload) {
+        console.log("payload*******", payload)
+        state.current = payload
     }
 }
 
 const actions = {
-    async getInfoAndListById({ commit }, payload) {
+    async getInfoAndListById({
+        commit
+    }, payload) {
         let res = await getInfoAndListById(payload);
         commit("upList", res)
     }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul v-for="(item,index) in listIndex" :key="index" class="ul">
-            <p class="GroupName">{{item.GroupName}}</p>
+            <p class="GroupName" @click="showTag">{{item.GroupName}}</p>
             <li v-for="(val,ind) in item.GroupList" :key="ind" class="indexTop"
             @click="detail(val.SerialID)"
             ><img v-lazy="val.Picture" slt="" class="indexImg" />
@@ -33,14 +33,20 @@ export default {
         }
     },
     computed:{
-
+        ...mapState({
+            tag:state=>state.Home.tag
+        })
     },
     methods:{
-        // ...mapMutations(['getcarID']),
+        ...mapMutations({
+      getTag:'Home/getTag'
+        }),
         detail(id){
             localStorage.setItem('SerialID',id)
             this.$router.push({path:'/detail',query:{id}});
-            // this.getcarID(id)
+        },
+        showTag(){
+            this.getTag(false)
         }
     },
     created(){

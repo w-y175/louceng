@@ -24,7 +24,7 @@
           v-for="(item,index) in year"
           :key="index"
           :class="{active:cur==index}"
-          @click="tab(index)"
+          @click="tab(index,item)"
         >{{item}}</span>
       </div>
       <!-- 内容 -->
@@ -52,7 +52,7 @@
   </div>
 </template>
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapMutations } from "vuex";
 export default {
   computed: {
     ...mapState({
@@ -62,25 +62,29 @@ export default {
       current: state => state.detail.current
     })
   },
+  mounted() {
+  },
   methods: {
     ...mapActions({
       getInfoAndListById: "detail/getInfoAndListById",
+      }),
+      ...mapMutations({setCurrent:"detail/setCurrent"}),
       skip() {
         let id = this.id;
         this.$router.push({ path: "/inquiryDetail", query: { id } });
       },
-      tab(index) {
+      tab(index,item) {
+        console.log(index,item)
         this.cur = index;
+        this.setCurrent(item)
+        this.getInfoAndListById(this.$route.query.id);
       },
       img() {
         this.$router.push("/img");
       }
-    })
   },
   created() {
     this.getInfoAndListById(this.$route.query.id);
-
-   
   },
   data() {
     return {

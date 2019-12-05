@@ -11,6 +11,7 @@ const state = {
   carIndexList: [],
   // 询底价
   inquiryDetailList:{},
+  tag: false,
   titleEle: '北京'
 }
 
@@ -31,6 +32,10 @@ const mutations = {
   getTitle(pay,load){
       pay.titleEle=load;
   },
+  // 展示隐藏
+  getTag(pay,load){
+    pay.tag=load;
+  }
 }
 
 const actions = {

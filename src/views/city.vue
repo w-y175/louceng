@@ -1,19 +1,22 @@
 <template>
     <div class="city">
         <p class="autom">自动定位</p>
-        <p class="beijing">北京</p>
+        <p class="beijing" @click="location('北京')">北京</p>
         <p class="autom">省市</p>
         <ul class="ul">
             <li v-for="(item,index) in cityList" :key="index"
-            @click="cityIndex(item.CityID)"
+            @click="addCityIndex(item.CityID)"
             >
             {{item.CityName}}
             <span class="cityicn">&gt;</span></li>
         </ul>
+         
         <div v-show="tag" class="cityRight" @click="showBlock">
+            <transition name="slide-fade">
             <cityIndex v-show="tag" class="cityIndex" />
+            </transition>
         </div>
-        
+         
     </div>
 </template>
 <script>
@@ -38,14 +41,22 @@ export default {
     },
     methods:{
         ...mapActions({
-            setcityIndex:'city/setcityIndex'
+            setcityIndex:'city/setcityIndex',
         }),
-        cityIndex(id){
+        ...mapMutations({
+            getTitle:'Home/getTitle'
+        }),
+        addCityIndex(id){
             this.tag = true;
            this.setcityIndex(id)
         },
         showBlock(){
             this.tag = false;
+        },
+        // 定位北京
+        location(name){
+            this.getTitle(name);
+            this.$router.push({path:'/inquiryDetail'});
         }
     },
     created(){
@@ -61,6 +72,12 @@ export default {
         width: 100%;
         height: 100%;
         overflow-y: scroll;
+    }
+    .slide-fade-enter-active,.slide-fade-leave-active {
+        transition: all .3s ease;// cubic-bezier(0.3, 0.3, 0.3, 0.3) 开始到结束过程的时间
+    }
+    .slide-fade-enter, .slide-fade-leave-to {
+        transform: translateX(75%);
     }
     .autom{
         width: 100%;
