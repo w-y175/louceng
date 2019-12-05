@@ -1,9 +1,9 @@
 import { setList,setcityIndex } from '@/services/index'
 
 const state = {
-     // 省市列表
+    // 省市列表
   cityList: [],
-  // 城市数据
+    // 城市数据
   cityIndex: [],
 }
 

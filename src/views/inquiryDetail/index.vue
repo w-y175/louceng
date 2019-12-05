@@ -6,18 +6,20 @@
             <img v-lazy="inquiryDetailList.Picture" slt="" class="inquiryDetailImg" />
             <div>
                 <p class="inquiryDetailtop">{{inquiryDetailList.AliasName}}</p>
-                <p><span>{{inquiryDetailList.list&&inquiryDetailList.list[0].market_attribute.year}}</span>款 <span  v-show="inquiryDetailList">{{inquiryDetailList.list&&inquiryDetailList.list[0].car_name}}</span> </p>
+                <p class="inpuiry"><span>{{inquiryDetailList.list&&inquiryDetailList.list[0].market_attribute.year}}</span>款 <span  v-show="inquiryDetailList">{{inquiryDetailList.list&&inquiryDetailList.list[0].car_name}}</span> </p>
                 </div>
-                <span>&gt;</span>
+                <span class="righticon">&gt;</span>
         </div>
         <p class="geren">个人信息</p>
         <form action="" class="input">
-            <p> 姓名 <input type="text" placeholder="请输入真实姓名" class="inputRight"></p>
-            <p> 手机 <input type="text" placeholder="请输入手机号" class="inputRight"></p>
-            <p> 城市 <span class="inputspan" @click="jumpCity">{{titleEle}} &gt;</span></p>
+            <p> <span>姓名</span> <input type="text" v-model="name" maxlength="4"
+             placeholder="请输入真实姓名" class="inputRight"></p>
+            <p> <span>手机</span> <input type="text" v-model="phone"  maxlength="11"
+             placeholder="请输入手机号" class="inputRight"></p>
+            <p> <span>城市</span> <span class="inputspan" @click="jumpCity">{{titleEle}} &gt;</span></p>
         </form>
         <div class="btnXun">
-            <p class="inquirybtn"><button class="btn">询最低价</button></p>
+            <p class="inquirybtn"><button class="btn" @click="addXun">询最低价</button></p>
         </div>
         <p class="geren">选择报价经销商</p>
     </div>
@@ -35,7 +37,9 @@ export default {
     data(){
         return {
             id:this.$route.query.id,
-            // 询问低价详情数据
+            // 询问低价详情数据,
+            phone:'',
+            name:''
         }
     },
     computed:{
@@ -53,6 +57,13 @@ export default {
         jumpCity(){
            this.$router.push({path:'/city'});
             this.setList();
+        },
+        // 验证
+        addXun(){
+            
+            if(!(/^1[3456789]\d{9}$/.test(this.phone)) || !(/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,4}$/.test(this.name))){
+                alert(123)
+            }
         }
     },
     created(){
@@ -68,32 +79,34 @@ export default {
 </script>
 <style scoped lang="scss">
     .topp{
-        line-height: 35px;
-        font-size: 14px;
+        line-height: 30px;
+        font-size: 15px;
         text-align: center;
-        background: rgb(163, 235, 163)
+        color: #fff;
+        background: #79cd92;
     }
     .inquiryDetail{
         display: flex;  
-        line-height: 29px;
-        margin-top: 15px;
+        line-height: 30px;
+        margin-top: 18px;
+        position: relative;
     }
     .inquiryDetailtop{
         font-size: 18px;
     }
     .inquiryDetailImg{
         width: 115px;
-        height: 75px;
+        height: 70px;
         border-radius: 5%;
-        border: 1px solid #ccc;
-        margin:0 20px 0 15px;
+        border: 1px solid rgb(238, 238, 238);
+        margin:0 10px 0 10px;
     }
     .geren{
         font-size: 12px;
         padding-left: 10px;
         width: 100%;
-        background: rgb(216, 216, 216);
-        line-height: 20px;
+        background: #eeeeee;
+        line-height: 26px;
         margin-top: 10px;
     }
     .input{
@@ -102,6 +115,9 @@ export default {
     .input p{
         border-bottom: 1px solid #ccc;
         padding-left: 10px;
+    }
+    .input p span{
+        font-size: 16px;
     }
     .inputRight{
         outline: none;
@@ -112,6 +128,9 @@ export default {
         float: right;
         line-height: 45px;
         text-align: right;
+    }
+    .inpuiry{
+        font-size: 16px;
     }
     .inputspan{
         font-size: 16px;
@@ -138,5 +157,12 @@ export default {
         border-radius: 5px;
         outline: none;
         border: none;
+    }
+    .righticon{
+        position: absolute;
+        right: 10px;
+        top: 15px;
+        font-size: 22px;
+        color: #999;
     }
 </style>
