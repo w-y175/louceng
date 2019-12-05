@@ -24,8 +24,8 @@
 <script>
 import axios from "axios";
 import Right from "../components/right";
-import RightIndex from '../components/rightIndex';
-import {mapActions,mapState} from 'vuex'
+import RightIndex from "../components/rightIndex";
+import { mapActions, mapState } from "vuex";
 export default {
   props: {},
   components: {
@@ -34,19 +34,19 @@ export default {
   },
   data() {
     return {
-      tag:false,
+      tag: false
     };
   },
   computed: {
     ...mapState({
-      carList:state=>state.Home.carList,
-      carIndexList:state=>state.Home.carIndexList
+      carList: state => state.Home.carList,
+      carIndexList: state => state.Home.carIndexList
     })
   },
   methods: {
     ...mapActions({
-        getCarlist:'Home/getCarlist',
-        getCarIndexlist:'Home/getCarIndexlist'
+      getCarlist: "Home/getCarlist",
+      getCarIndexlist: "Home/getCarIndexlist"
     }),
     // 锚点连接
     jumps(item) {
@@ -59,15 +59,13 @@ export default {
       this.$refs.AddRight.style.width = '75%';
 
       this.getCarIndexlist(id);
-      console.log(id)
+      console.log(id);
     }
   },
   created() {
-      this.getCarlist();
+    this.getCarlist();
   },
-  mounted() {
-   
-  }
+  mounted() {}
 };
 </script>
 <style scoped lang="scss">
