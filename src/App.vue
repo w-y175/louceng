@@ -16,7 +16,7 @@ export default ({
     },
     watch: { 
       '$route' (to, from) { 
-      const arr = ['/home'];
+      const arr = ['/city'];
       const compare = arr.indexOf(to.path)>arr.indexOf(from.path);
       this.transitionName = compare ? 'transitionLeft' : 'transitionRight';
       } 
@@ -45,16 +45,23 @@ body{
  transition: all .5s ease; /*定义动画的时间和过渡效果*/
 }
  
-.transitionLeft-enter,
+
 .transitionRight-leave-active {
   -webkit-transform: translate(100%, 0);
   transform: translate(-100%, 0); 
    /*当左滑进入右滑进入过渡动画*/
 }
- 
-.transitionLeft-leave-active,
-.transitionRight-enter {
+ .transitionRight-enter {
   -webkit-transform: translate(-100%, 0); 
   transform: translate(100%, 0); 
 }
+
+ .transitionLeft-enter{
+   transform: translate(0, 100%);
+ }
+.transitionLeft-leave-active{
+  transform: translate(0, -100%);
+}
+
+
 </style>
