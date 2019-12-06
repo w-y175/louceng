@@ -47,7 +47,7 @@
     <!-- 底部 -->
     <div class="footer" @click="skip">
       <div class="one">{{del.BottomEntranceTitle}}</div>
-      <div class="two">{{del.BottomEntranceSubTitle}}</div>
+      <div class="two">本地经销商为你报价</div>
     </div>
   </div>
 </template>
@@ -74,7 +74,7 @@ export default {
         this.$router.push({ path: "/inquiryDetail", query: { id } });
       },
       tab(index,item) {
-        console.log(index,item)
+        // console.log(index,item)
         this.cur = index;
         this.setCurrent(item)
         this.getInfoAndListById(this.$route.query.id);

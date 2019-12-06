@@ -1,9 +1,6 @@
 import {
-    getInfoAndListById
-} from "../../services/index"
-import {
-    stat
-} from "fs";
+    getInfoAndListById,
+} from "../../services/index";
 
 //定义一个list数据
 const state = {
@@ -76,13 +73,12 @@ const mutations = {
             // 聚合key相同的车款数据
             currentList = formatCarList(currentList);
             state.currentList = currentList;
-            console.log(state.currentList)
         } else {
             alert(payload.msg)
         }
     },
     setCurrent(state, payload) {
-        console.log("payload*******", payload)
+        // console.log("payload*******", payload)
         state.current = payload
     }
 }

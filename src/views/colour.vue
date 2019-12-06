@@ -38,7 +38,6 @@ export default {
     }),
     list() {
       return Object.keys(this.color);
-      console.log(list);
     }
   },
   methods: {
