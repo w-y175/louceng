@@ -39,9 +39,10 @@ export default {
     },
     methods:{
         ...mapMutations({
-      getTag:'Home/getTag'
+        getTag:'Home/getTag'
         }),
         detail(id){
+            // 将车系id 存入本地存储
             localStorage.setItem('SerialID',id)
             this.$router.push({path:'/detail',query:{id}});
         },

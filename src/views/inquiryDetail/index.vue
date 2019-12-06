@@ -22,6 +22,20 @@
             <p class="inquirybtn"><button class="btn" @click="addXun">询最低价</button></p>
         </div>
         <p class="geren">选择报价经销商</p>
+        <div class="dealer">
+            
+            <ul v-for="(item,index) in dealerList" :key="index" class="dealerele">
+                <input type="checkbox" class="check">
+                <li>
+                    <span class="spanName">{{item.dealerShortName}}</span> 
+                    <span class="spanPrice">{{item.promotePrice}}万</span>
+                 </li> 
+                <li>
+                    <span class="spanAddress">{{item.address}}</span>
+                    <span class="spanAddress spanAddressRight">售{{item.saleRange}}</span>
+                </li>
+            </ul>
+        </div>
     </div>
   
 </template>
@@ -39,19 +53,28 @@ export default {
             id:this.$route.query.id,
             // 询问低价详情数据,
             phone:'',
-            name:''
+            name:'',
         }
     },
     computed:{
        ...mapState({
+           // 询问数据
            inquiryDetailList:state=>state.Home.inquiryDetailList,
+           // 切换城市
            titleEle:state=>state.Home.titleEle,
+           // 车款数据
+           currentList:state=>state.detail.currentList,
+           // 经销商数据
+           dealerList:state=>state.dealer.dealerList,
+           // 默认北京ID
+           cityCurrentId:state=>state.city.cityCurrentId,
        })
     },
     methods:{
         ...mapActions({
             setList:'city/setList',
-            getInquiryDetailList:'Home/getInquiryDetailList'
+            getInquiryDetailList:'Home/getInquiryDetailList',
+            getDealerList:'dealer/getDealerList'
         }),
         // 跳转到 城市页面
         jumpCity(){
@@ -60,16 +83,23 @@ export default {
         },
         // 验证
         addXun(){
-            
             if(!(/^1[3456789]\d{9}$/.test(this.phone)) || !(/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,4}$/.test(this.name))){
-                alert(123)
+                alert('请输入正确的手机号或姓名')
             }
         }
     },
     created(){
         let id = this.id;
-        this.getInquiryDetailList(id)
-    console.log(this.$store)
+        this.getInquiryDetailList(id);
+        let car_id = this.currentList;
+         // 车款id
+        let idi = car_id[0].list[0].car_id;
+        localStorage.setItem('car_id',idi)
+         // 默认地点北京id
+        let cityCurrentId = this.cityCurrentId;
+        this.getDealerList({idi,cityCurrentId});
+        console.log(this.dealerList,'15616546456')
+        console.log(this.$store)
         
     },
     mounted(){
@@ -130,7 +160,9 @@ export default {
         text-align: right;
     }
     .inpuiry{
-        font-size: 16px;
+        width: 215px;
+        line-height: 20px;
+        font-size: 15px;
     }
     .inputspan{
         font-size: 16px;
@@ -164,5 +196,31 @@ export default {
         top: 15px;
         font-size: 22px;
         color: #999;
+    }
+    .dealerele{
+        height: 82px;
+        line-height:25px;
+        align-items: center;
+        border-bottom:1px solid #eeeeee;
+        padding: 15px 15px 15px 30px;
+        position: relative;
+    }
+    .spanAddress{
+        color: #999999;
+    }
+    .spanAddressRight{
+        float: right;
+    }
+    .spanName{
+        font-size: 15px;
+    }
+    .spanPrice{
+        color: red;
+        float: right;
+    }
+    .check{
+        position: absolute;
+        left: 10px;
+        top: 50%;
     }
 </style>

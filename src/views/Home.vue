@@ -59,7 +59,6 @@ export default {
       ).offsetTop;
     },
     addShow(id){
-      
       this.getTag(true)
       this.getCarIndexlist(id);
     }

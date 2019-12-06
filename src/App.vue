@@ -42,7 +42,7 @@ body{
   font-size:.32rem;
 }
 .transitionBody{
- transition: all .5s ease; /*定义动画的时间和过渡效果*/
+ transition: all .3s ease; /*定义动画的时间和过渡效果*/
 }
  
 

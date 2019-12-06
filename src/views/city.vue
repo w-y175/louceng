@@ -36,12 +36,14 @@ export default {
     },
     computed:{
          ...mapState({
-            cityList:state=>state.city.cityList
+            cityList:state=>state.city.cityList,
+            cityCurrentId:state=>state.city.cityCurrentId
          }),
     },
     methods:{
         ...mapActions({
             setcityIndex:'city/setcityIndex',
+            getDealerList:'dealer/getDealerList'
         }),
         ...mapMutations({
             getTitle:'Home/getTitle'
@@ -57,6 +59,11 @@ export default {
         location(name){
             this.getTitle(name);
             this.$router.push({path:'/inquiryDetail'});
+            // 车款ID
+            let idi = localStorage.getItem('car_id');
+            let cityCurrentId = this.cityCurrentId;
+            // 请求 经销商
+            this.getDealerList({idi,cityCurrentId});
         }
     },
     created(){
