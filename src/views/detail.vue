@@ -47,7 +47,7 @@
     <!-- 底部 -->
     <div class="footer" @click="skip">
       <div class="one">{{del.BottomEntranceTitle}}</div>
-      <div class="two">{{del.BottomEntranceSubTitle}}</div>
+      <div class="two">本地经销商为你报价</div>
     </div>
   </div>
 </template>

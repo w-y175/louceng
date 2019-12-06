@@ -2,7 +2,7 @@ import { getImageList } from '@/services/index'
 
 const state = {
 
-    CarImg: [],
+    CarImg: {},
 }
 
 const mutations = {
@@ -13,7 +13,7 @@ const mutations = {
 }
 
 const actions = {
-    async  getImageList({ commit }, payload) {
+    async getImageList({ commit },payload){
         let res = await getImageList();
         console.log(res)
         commit('setImg', res.data);
