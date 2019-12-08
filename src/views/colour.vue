@@ -1,6 +1,6 @@
 <template>
   <div class="color">
-    <!-- 导航 -->
+    <!-- 头部 -->
     <div class="quan">全部颜色</div>
     <div class="box">
       <div class="nav">
@@ -14,10 +14,10 @@
       <!--  -->
       <div class="main">
         <div class="in">
-          <span v-for="(item,index) in color[list[cur]]" :key="index">
+          <p v-for="(item,index) in color[list[cur]]" :key="index">
             <i :style="{'background':item.Value}"></i>
-            {{item.Name}}
-          </span>
+            <span>{{item.Name}}</span>
+          </p>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@ export default {
 
   created() {
     this.getModelImageYearColor(this.$route.query.id);
-    console.log("$store...", this.$store);
+    // console.log("$store...", this.$store);
   }
 };
 </script>
@@ -63,29 +63,40 @@ export default {
   display: flex;
   flex-direction: column;
   background: #f5f5f5;
+ 
 }
 .quan {
   width: 100%;
-  height: 0.8rem;
+  height: 30px;
   background: #fff;
   display: flex;
   justify-content: space-around;
   color: #6fd2ff;
   align-items: center;
+  font-size: 16px;
+  margin-top: 5px;
 }
 .box {
   width: 100%;
   height: 100%;
+
 }
-.box .nav {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  height: 0.8rem;
-  background: #fff;
-  margin-top: 10px;
-  align-items: center;
-  font-size: 14px;
+.nav {
+  margin-top:7.5px;
+    padding-left:10px;
+    font-size: 16px;
+    line-height: 30px;
+    height: 30px;
+    background: #fff;
+    overflow-x: scroll;
+ 
+}
+.nav span{
+  /* display: flex; */
+  font-size: 16px;
+    line-height: 30px;
+    padding-right: 20px
+  
 }
 .active {
   color: #6fd2ff;
@@ -97,20 +108,26 @@ export default {
 }
 .in {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
-.in span {
-  display: inline-block;
+.in p {
+  display: flex;
   width: 45%;
-  height: 0.6rem;
-  /* margin-top: 5px;
-  margin-left: 5px;  */
-  margin: 5px 5px;
-  border: 1px solid #ccc;
-  text-align: center;
+  height: 35px;
+  margin: 7px 7px;
+  border: 1px solid #69c0ff;
+  border-radius: 3px
+}
+p span {
+  display: inline-block;
+  margin: 5px;
+  font-size: 16px;
 }
 i {
   display: inline-block;
-  width: 0.4rem;
-  height: 0.4rem;
+  width: 20px;
+  height: 20px;
+  margin: 5px 5px;
 }
 </style>

@@ -1,5 +1,5 @@
 import request from '@/utils/request';
 
-export let getImageList = () => {
-    return request('/v2-car-getImageList.html?SerialID=2593')
+export let getImageList = (params) => {
+    return request('/v2-car-getImageList.html',{params})
 }

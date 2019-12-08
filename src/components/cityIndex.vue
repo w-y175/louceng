@@ -33,8 +33,8 @@ export default {
             getTitle:'Home/getTitle'
         }),
         upDateTitle(name){
-            let id = localStorage.getItem('SerialID')
-            this.$router.push({path:'/inquiryDetail',query:{id}});
+           // let id = localStorage.getItem('SerialID')
+            this.$router.push({path:'/inquiryDetail',query:{SerialID:id}});
             this.getTitle(name)
         }
     },

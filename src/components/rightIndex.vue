@@ -42,7 +42,7 @@ export default {
       getTag:'Home/getTag'
         }),
         detail(id){
-            localStorage.setItem('SerialID',id)
+            //localStorage.setItem('SerialID',id)
             this.$router.push({path:'/detail',query:{id}});
         },
         showTag(){

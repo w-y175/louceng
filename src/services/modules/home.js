@@ -19,7 +19,7 @@ export let getCarIndexlist = (id)=>{
     return request('/v2-car-getMakeListByMasterBrandId.html',{params:{MasterID:id}})
 }
 
- //询问低价
+ 
  export let getInquiryDetailList = (id)=>{
     return request('/v2-car-getInfoAndListById.html',{params:{SerialID:id}})
 }

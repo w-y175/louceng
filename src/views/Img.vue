@@ -4,6 +4,7 @@
       <div class="left" @click="colour">颜色</div>
       <div class="right">车款</div>
     </div>
+    <div class="pic">
    <div class="smallImg" v-for="(item,index) in pic" :key="index">
       <!-- 渲染汽车展示小图片 -->
       <div class="imgs" v-for="(ite,i) in item.List" :key="i">
@@ -16,6 +17,7 @@
         </div> 
     </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -23,20 +25,23 @@ import {mapState,mapActions} from "vuex"
 export default {
   computed:{
     ...mapState({
-      pic:state=>state. Carimg.CarImg
+      pic:state=>state.Carimg.CarImg,
+      // colorId:state=>state.Carimg.colorId,
+      // carId:state=>state.Carimg.carId
     })
   },
   methods: {
     ...mapActions({
 getImageList:'Carimg/getImageList'
     }),
-    colour() {
+    colour(){
       this.$router.push("/colour");
     }
   },
   created(){
-    this.getImageList();
-      console.log("$store...", this.$store);
+    this.getImageList(this.$route.query.SerialID);
+    
+    console.log("$store...", this.$store);
   },
 
   data() {
@@ -51,35 +56,43 @@ getImageList:'Carimg/getImageList'
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+ 
   background: #f5f5f5;
 }
 .select {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  height: 30px;
+  height: 50px;
   line-height: 30px;
-  font-size: 14px;
+  font-size: 15px;
   background: #fff;
+}
+.pic{
+  width: 100%;
+ 
+  overflow-y: scroll
 }
  .smallImg{
   width: 100%;
+ 
    display:flex;
    flex-wrap: wrap;
    justify-content: space-between;
    position:relative;
+   
 }
 .smallImg .imgs{
   width:32.5%;
+  
 }
  .smallImg img{
   width:100%; 
-  height:85px;
+  height:95px;
 }
  .smallImg .reduce{
  width:32.5%;
- height:85px;
+ height:95px;
  background:rgba(0, 0, 0, 0.5);
  position: absolute;;
  top:0;

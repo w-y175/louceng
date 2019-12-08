@@ -2,7 +2,7 @@
   <div id="app">
     <transition :name="transitionName">
       <keep-alive>
-          <router-view class="transitionBody"></router-view>
+          <router-view class="transitionBody" ></router-view>
       </keep-alive>
     </transition>
   </div>
@@ -16,12 +16,13 @@ export default ({
     },
     watch: { 
       '$route' (to, from) { 
-      const arr = ['/city'];
-      const compare = arr.indexOf(to.path)>arr.indexOf(from.path);
+      const arr = ['/city','/colour'];
+      const compare = arr.indexOf(to.path)>arr.indexOf(from.path);  
       this.transitionName = compare ? 'transitionLeft' : 'transitionRight';
       } 
     }  
 })
+
 </script>
 <style lang="scss">
 *{

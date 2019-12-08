@@ -71,7 +71,8 @@ export default {
       ...mapMutations({setCurrent:"detail/setCurrent"}),
       skip() {
         let id = this.id;
-        this.$router.push({ path: "/inquiryDetail", query: { id } });
+        console.log(id)
+        this.$router.push({ path: "/inquiryDetail", query: { id }});
       },
       tab(index,item) {
         // console.log(index,item)
@@ -80,16 +81,19 @@ export default {
         this.getInfoAndListById(this.$route.query.id);
       },
       img() {
-        this.$router.push("/img");
+        console.log(this.$route.query.SerialID)
+        this.$router.push({path:"/Img",query:{SerialID:this.$route.query.SerialID}});
       }
   },
   created() {
     this.getInfoAndListById(this.$route.query.id);
+    console.log(this.$route.query.id)
   },
   data() {
     return {
       cur: 0,
-      id: this.$route.query.id
+     id:0
+      
     };
   }
 };
@@ -129,7 +133,7 @@ export default {
 }
 .con {
   width: 100%;
-  height: 1.3rem;
+  height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -138,13 +142,14 @@ export default {
 }
 .con .left {
   width: 50%;
-  height: 1.3rem;
+height: 50px;
   margin-left: 10px;
+  margin-top: 5px
 }
 .left p {
-  font-size: 0.35rem;
+  font-size: 16px;
   color: red;
-  margin-top: 0.3rem;
+ 
 }
 .left h5 {
   font-size: 13px;
@@ -155,7 +160,7 @@ export default {
   width: 50%;
   position: absolute;
   right: 0.1rem;
-  top: 0.1rem;
+  
 }
 .con .right button {
   width: 185px;
@@ -194,7 +199,7 @@ export default {
 }
 .list .title {
   width: 100%;
-  height: 0.5rem;
+  height:30px;
   font-size: 14px;
   line-height: 30px;
   color: #999999;
