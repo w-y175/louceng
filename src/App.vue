@@ -2,7 +2,7 @@
   <div id="app">
     <transition :name="transitionName">
       <keep-alive>
-          <router-view class="transitionBody" ></router-view>
+          <router-view class="transitionBody"  ></router-view>
       </keep-alive>
     </transition>
   </div>
