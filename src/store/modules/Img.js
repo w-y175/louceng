@@ -5,8 +5,6 @@ const state = {
     CarImg: {},
     // colorId:"",
     // carId:"",
-
-
 }
 
 const mutations = {
@@ -20,7 +18,6 @@ const mutations = {
     //     state.carId=payload
 
     // }
-
 }
 
 const actions = {

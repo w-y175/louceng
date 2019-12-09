@@ -1,5 +1,5 @@
 <template>
-    <div class="inquiry">
+    <div class="inquiry" v-if="(Object.keys(inquiryDetailList))">
         <p class="topp">可向多个商家询问最低价,商家及时回复</p>
         <div  class="inquiryDetail">
             <img v-lazy="inquiryDetailList.Picture" slt="" class="inquiryDetailImg" />
@@ -27,15 +27,18 @@
         <div class="dealer">
             
             <ul v-for="(item,index) in dealerList" :key="index" class="dealerele">
-                <input type="checkbox" class="check">
-                <li>
-                    <span class="spanName">{{item.dealerShortName}}</span> 
-                    <span class="spanPrice">{{item.promotePrice}}万</span>
-                 </li> 
-                <li>
-                    <span class="spanAddress">{{item.address}}</span>
-                    <span class="spanAddress spanAddressRight">售{{item.saleRange}}</span>
-                </li>
+
+                <!-- <input type="checkbox" class="check"> -->
+                <div :class="{active:item.newsRemainingDays==1}" @click="checkTag(item)">
+                    <li>
+                        <span class="spanName">{{item.dealerShortName}}</span> 
+                        <span class="spanPrice">{{item.promotePrice}}万</span>
+                    </li> 
+                    <li>
+                        <span class="spanAddress">{{item.address}}</span>
+                        <span class="spanAddress spanAddressRight">售{{item.saleRange}}</span>
+                    </li>
+                </div>
             </ul>
         </div>
     </div>
@@ -56,6 +59,7 @@ export default {
             // 询问低价详情数据,
             phone:'',
             name:'',
+            curIndex:0
         }
     },
     computed:{
@@ -88,6 +92,10 @@ export default {
             if(!(/^1[3456789]\d{9}$/.test(this.phone)) || !(/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,4}$/.test(this.name))){
                 alert('请输入正确的手机号或姓名')
             }
+        },
+        checkTag(item){
+           item.newsRemainingDays = !item.newsRemainingDays;
+            
         }
     },
     created(){
@@ -102,7 +110,7 @@ export default {
         // 请求数据
         this.getDealerList({idi,cityCurrentId});
         // console.log(this.$store);
-        
+        console.log(this.$store.state,"11111111111111")
     },
     mounted(){
 
@@ -225,10 +233,42 @@ export default {
         color: red;
         float: right;
     }
-    .check{
-        background: #79cd92;
+    // .check{
+    //     background: #79cd92;
+    //     position: absolute;
+    //     left: 10px;
+    //     top: 50%;
+    // }
+    .dealerele>div:before {
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+        box-sizing: border-box;
         position: absolute;
-        left: 10px;
+        left: 8px;
         top: 50%;
+        -webkit-transform: translate3d(0,-50%,0);
+        transform: translate3d(0,-50%,0);
+    }
+    .dealerele>div.active:before {
+        background: #3aacff;
+        border: none;
+    }
+    .dealerele>div.active:after {
+        content: "";
+        display: inline-block;
+        padding-top: 8px;
+        padding-right: 5px;
+        border: 2px solid #fff;
+        -webkit-transform: rotate(40deg) translate3d(0,-50%,0);
+        transform: rotate(40deg) translate3d(0,-50%,0);
+        position: absolute;
+        left: 9px;
+        border-left: none;
+        border-top: none;
+        top: 47%;
     }
 </style>

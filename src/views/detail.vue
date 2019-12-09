@@ -85,7 +85,6 @@ export default {
   },
   mounted() {
     this.getInfoAndListById(this.$route.query.id);
-    console.log(this.$route.query.id)
   },
 
   data() {

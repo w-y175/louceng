@@ -37,7 +37,7 @@ export default {
       color: state => state.color.color
     }),
     list() {
-      return Object.keys(this.color);
+      return Object.keys(this.color).sort((a,b)=>(b-a))
     }
   },
   methods: {

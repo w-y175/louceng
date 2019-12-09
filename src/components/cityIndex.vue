@@ -24,6 +24,7 @@ export default {
     },
     computed:{
         ...mapState({
+            // 对应城市数据
             cityIndex:state=>state.city.cityIndex,
             titleEle:state=>state.Home.titleEle,
         }),
@@ -50,6 +51,7 @@ export default {
         }
     },
     created(){
+        console.log(this.cityIndex)
         // console.log(this.$store)
     },
     mounted(){
@@ -66,7 +68,7 @@ export default {
         line-height: 40px;
     }
     .cityul li{
-        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
         font-size: 14px;
         padding-left: 18px;
     }

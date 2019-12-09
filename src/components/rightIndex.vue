@@ -70,7 +70,8 @@ export default {
     .indexTop{
         height: 70px;
         display: flex;
-        border-bottom: 1px solid rgb(231, 231, 231);
+        align-items: center;
+        border-top: 1px solid rgb(231, 231, 231);
     }
     .span{
         color: red;
@@ -86,11 +87,9 @@ export default {
         color: #666;
     }
     .imgpick{
-        height: 46px;
         margin-left: 5px;
-        line-height: 23px;
-        font-size: 16px;
-        margin-top: 10px;
+        font-size: 17px;
+        line-height: 25px;
         color: rgb(131, 131, 131);
     }
 </style>
