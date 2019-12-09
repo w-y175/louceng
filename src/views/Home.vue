@@ -57,9 +57,9 @@ export default {
       document.querySelector(".wrapper").scrollTop = document.querySelector(
         `#${item}`
       ).offsetTop;
+      console.log(document.querySelector(".wrapper").scrollTop, document.querySelector( `#${item}`).offsetTop)
     },
     addShow(id){
-      
       this.getTag(true)
       this.getCarIndexlist(id);
     }

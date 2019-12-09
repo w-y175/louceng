@@ -5,8 +5,8 @@ import color from './modules/color'
 import Home from './modules/home'
 import city from './modules/city'
 import Carimg from './modules/Img'
-
 import creareLogger from 'vuex/dist/logger';
+import dealer from './modules/dealer'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -16,7 +16,7 @@ export default new Vuex.Store({
     color,
     city,
     Carimg,
-   
+    dealer
   },
   plugins: [creareLogger()]
 })

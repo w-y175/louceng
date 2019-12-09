@@ -2,13 +2,20 @@
   <div id="app">
     <transition :name="transitionName">
       <keep-alive>
-          <router-view class="transitionBody"  ></router-view>
-      </keep-alive>
+
+          <router-view class="transitionBody" :key='key' ></router-view>
+ </keep-alive>
     </transition>
   </div>
 </template>
 <script>
 export default ({
+    computed: {
+      // 页面唯一key值  每一次渲染  每一次请求
+    key(){
+      return this.$route.name?this.$route.name+ +new Date():this.$route+ +new Date()
+      }
+    },
     data() {
       return {
         transitionName: 'transitionLeft'
@@ -43,7 +50,7 @@ body{
   font-size:.32rem;
 }
 .transitionBody{
- transition: all .5s ease; /*定义动画的时间和过渡效果*/
+ transition: all .3s ease; /*定义动画的时间和过渡效果*/
 }
  
 

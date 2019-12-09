@@ -21,28 +21,42 @@
 </template>
 
 <script>
-import {mapState,mapActions} from "vuex"
+import {mapState,mapActions,mapMutations} from "vuex"
 export default {
   computed:{
     ...mapState({
       pic:state=>state.Carimg.CarImg,
-      // colorId:state=>state.Carimg.colorId,
-      // carId:state=>state.Carimg.carId
+      colorId:state=>state.Carimg.colorId,
+      carId:state=>state.Carimg.carId
     })
   },
+//   watch:{
+// colorId(){
+//   this.getImageList(this.serialID)
+// },
+// carId(){
+//   this.getImageList(this.serialID)
+// }
+  //},
   methods: {
     ...mapActions({
-getImageList:'Carimg/getImageList'
+getImageList:'Carimg/getImageList',
+getModelImageYearColor:'color/getModelImageYearColor'
     }),
+    // ...mapMutations({
+      
+    // })
     colour(){
-      this.$router.push("/colour");
+      this.$router.push('/colour');
     },
     car(){
       this.$router.push({path:"/carstyle",query:{SerialID:this.$route.query.id}})
     }
   },
   created(){
+    console.log(this.$route.query.SerialID)
     this.getImageList(this.$route.query.SerialID);
+    this.getModelImageYearColor(this.$route.query.SerialID)
     console.log("$store...", this.$store);
   },
 
@@ -72,7 +86,7 @@ getImageList:'Carimg/getImageList'
 }
 .pic{
   width: 100%;
- 
+  height: 100%;
   overflow-y: scroll
 }
  .smallImg{

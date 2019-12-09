@@ -29,19 +29,22 @@
       </div>
       <!-- 内容 -->
       <div class="list" v-for="(item,index) in currentList" :key="index">
-        <div class="title">{{item.key}}</div>
-        <div class="box">
-          <p class="name">{{item.list[0].market_attribute.year}}款{{item.list[0].car_name}}</p>
-          <p class="type">{{item.list[0].horse_power}}马力{{item.list[0].gear_num}}档{{item.list[0].trans_type}}</p>
-          <div class="cone">
-            <span class="max">指导价{{item.list[0].market_attribute.official_refer_price}}</span>
-            <span class="min">{{item.list[0].market_attribute.dealer_price_min}}起</span>
-          </div>
-        </div>
+        <p >{{item.key}}</p>
+        <ul >
+        <li  v-for="(ite,i) in item.list" :key='i'>
+          <p >{{ite.market_attribute.year}}款{{ite.car_name}}</p>
+          <p >{{ite.horse_power}}马力{{ite.gear_num}}档{{ite.trans_type}}</p>
+          <p >
+            <span class="max">指导价{{ite.market_attribute.official_refer_price}}</span>
+            <span class="min">{{ite.market_attribute.dealer_price_min}}起</span>
+          </p>
+            <p @click="skip" class="buttom">{{del.BottomEntranceTitle}}</p>
+          </li>
+       
+        
+        
+        </ul>
 
-        <div class="buttom">
-          <p @click="skip">{{del.BottomEntranceTitle}}</p>
-        </div>
       </div>
     </div>
     <!-- 底部 -->
@@ -62,8 +65,7 @@ export default {
       current: state => state.detail.current
     })
   },
-  mounted() {
-  },
+  
   methods: {
     ...mapActions({
       getInfoAndListById: "detail/getInfoAndListById",
@@ -84,14 +86,15 @@ export default {
       this.$router.push({path:"/Img",query:{SerialID:this.$route.query.id}});
       }
   },
-  created() {
+  mounted() {
     this.getInfoAndListById(this.$route.query.id);
     console.log(this.$route.query.id)
   },
+
   data() {
     return {
       cur: 0,
-     id:0
+     id:this.$route.query.id
       
     };
   }
@@ -169,89 +172,81 @@ height: 50px;
   border-radius: 10px;
   border: none;
   font-size: 16px;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
-.page .count .top {
-  margin-top: 10px;
-  width: 100%;
-  height: 40px;
-  padding: 10px 0;
-  background: #fff;
+ .count .top {
+ border-top: 10px solid #f4f4f4;
+    padding: 0 10px;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
 }
-.page .count .top span {
-  margin-left: 20px;
+ .count .top span {
+ 
+  padding-right: 20px
 }
 .active {
   color: #00afff;
 }
-.page .count {
+ .count {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow-x:hidden 
 }
-.list {
-  width: 100%;
-  height: 100%;
+.count>div>p {
+    padding: 0 10px;
+    height: 25px;
+    line-height: 30px;
+    font-size: 13px;
+    color: #999;
+    background: #f4f4f4;
 }
-.list .title {
-  width: 100%;
-  height:30px;
-  font-size: 14px;
-  line-height: 30px;
-  color: #999999;
-  margin-left: 10px;
-}
-.list .box {
-  width: 100%;
-  height: 80px;
+.count ul{
   background: #fff;
-  border-bottom: 1px solid #ccc;
+ 
 }
-.list .box .name {
-  font-size: 15px;
-  padding: 8px 10px;
-  color: #3d3d3d;
+.count ul li:last-child {
+    border-bottom: 0;
 }
-.list .box .type {
-  font-size: 14px;
-  color: #999999;
-  padding: 0px 10px;
+.count ul li p:first-child {
+    padding: 10px 0 16px;
+    font-size: 16px;
+    /* line-height: ; */
+    color: #3d3d3d;
 }
-
-.list .cone {
-  margin-left: 190px;
+.count ul li p:nth-child(2) {
+    color: #bdbdbd;
+    font-size: 14px;
 }
-.list .cone span {
-  color: #999999;
-  font-size: 12px;
+.count ul li p:nth-child(3) {
+    text-align: right;
+    margin-right: 10px;
+    padding-bottom: 20px;
+    font-size: 13px;
+    color: #818181;
 }
-.list .cone .min {
-  color: red;
-  font-size: 14px;
-  margin-left: 20px;
+.count ul li p:nth-child(3) span:nth-child(2) {
+    font-size: 16px;
+    color: #ff2336;
+    margin-left:15px;
+    
 }
-.list .cone .max {
-  font-size: 12px;
-}
-.list .buttom {
-  width: 100%;
-  height: 40px;
-  background: #fff;
-  line-height: 40px;
-}
-.list .buttom p {
-  margin-left: 120px;
-  width: 140px;
-  height: 30px;
-  color: #00afff;
-  border-radius: 10px;
-  border: none;
-  text-align: center;
-  font-size: 16px;
-  line-height: 40px;
+.buttom {
+   border: none;
+    border-top: 1px solid #eee;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    color: #00afff;
+    background: #fff;
+    font-weight: 500;
+   padding-left: 150px;
+    line-height: 40px
+  
 }
 .footer {
   width: 100%;

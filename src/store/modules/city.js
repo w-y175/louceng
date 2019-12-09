@@ -5,6 +5,8 @@ const state = {
   cityList: [],
     // 城市数据
   cityIndex: [],
+  // 默认北京id
+  cityCurrentId:'201'
 }
 
 const mutations = {

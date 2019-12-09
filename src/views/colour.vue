@@ -14,7 +14,7 @@
       <!--  -->
       <div class="main">
         <div class="in">
-          <p v-for="(item,index) in color[list[cur]]" :key="index">
+          <p v-for="(item,index) in color[list[cur]]" :key="index" >
             <i :style="{'background':item.Value}"></i>
             <span>{{item.Name}}</span>
           </p>
@@ -44,14 +44,16 @@ export default {
     ...mapActions({
       getModelImageYearColor: "color/getModelImageYearColor"
     }),
+
     tab(index) {
       this.cur = index;
-    }
+    },
+   
   },
 
   created() {
-    this.getModelImageYearColor(this.$route.query.id);
-    // console.log("$store...", this.$store);
+    this.getModelImageYearColor(2593);
+    
   }
 };
 </script>

@@ -2,14 +2,14 @@
     <div class="cityele">
         <ul class="cityul">
             <li v-for="(item,index) in cityIndex" :key="index"
-            @click="upDateTitle(item.CityName)"
+            @click="upDateTitle(item)"
             >
             {{item.CityName}}</li>
         </ul>
     </div>
 </template>
 <script>
-import {mapState,mapMutations} from 'vuex';
+import {mapState,mapMutations,mapActions} from 'vuex';
 export default {
     props:{
 
@@ -26,16 +26,27 @@ export default {
         ...mapState({
             cityIndex:state=>state.city.cityIndex,
             titleEle:state=>state.Home.titleEle,
-        })
+        }),
     },
     methods:{
         ...mapMutations({
-            getTitle:'Home/getTitle'
+            getTitle:'Home/getTitle',
         }),
-        upDateTitle(name){
-           // let id = localStorage.getItem('SerialID')
-            this.$router.push({path:'/inquiryDetail',query:{SerialID:id}});
-            this.getTitle(name)
+        ...mapActions({
+            getDealerList:'dealer/getDealerList'
+        }),
+        upDateTitle(item){
+            // 跳回inquiryDetail  获取车系id
+            let id = localStorage.getItem('SerialID');
+            // 城市ID
+            let cityCurrentId = item.CityID;
+            // 车款ID
+            let idi = localStorage.getItem('car_id');
+            // 请求 经销商
+            this.getDealerList({idi,cityCurrentId});
+            
+            this.$router.push({path:'/inquiryDetail',query:{id}});
+            this.getTitle(item.CityName)
         }
     },
     created(){
