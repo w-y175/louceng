@@ -2,7 +2,7 @@
   <div class="page-img">
     <div class="select">
       <div class="left" @click="colour">颜色</div>
-      <div class="right">车款</div>
+      <div class="right" @click='car'>车款</div>
     </div>
     <div class="pic">
    <div class="smallImg" v-for="(item,index) in pic" :key="index">
@@ -36,11 +36,13 @@ getImageList:'Carimg/getImageList'
     }),
     colour(){
       this.$router.push("/colour");
+    },
+    car(){
+      this.$router.push({path:"/carstyle",query:{SerialID:this.$route.query.id}})
     }
   },
   created(){
     this.getImageList(this.$route.query.SerialID);
-    
     console.log("$store...", this.$store);
   },
 

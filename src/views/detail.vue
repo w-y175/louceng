@@ -81,8 +81,7 @@ export default {
         this.getInfoAndListById(this.$route.query.id);
       },
       img() {
-        console.log(this.$route.query.SerialID)
-        this.$router.push({path:"/Img",query:{SerialID:this.$route.query.SerialID}});
+      this.$router.push({path:"/Img",query:{SerialID:this.$route.query.id}});
       }
   },
   created() {
