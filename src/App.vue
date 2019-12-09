@@ -2,13 +2,19 @@
   <div id="app">
     <transition :name="transitionName">
       <keep-alive>
-          <router-view class="transitionBody"></router-view>
+          <router-view class="transitionBody" :key='key' ></router-view>
       </keep-alive>
     </transition>
   </div>
 </template>
 <script>
 export default ({
+    computed: {
+      // 页面唯一key值  每一次渲染  每一次请求
+    key(){
+      return this.$route.name?this.$route.name+ +new Date():this.$route+ +new Date()
+      }
+    },
     data() {
       return {
         transitionName: 'transitionLeft'

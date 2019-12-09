@@ -1,12 +1,14 @@
 <template>
-
-    <div>
+    <div class="inquiry">
         <p class="topp">可向多个商家询问最低价,商家及时回复</p>
         <div  class="inquiryDetail">
             <img v-lazy="inquiryDetailList.Picture" slt="" class="inquiryDetailImg" />
             <div>
                 <p class="inquiryDetailtop">{{inquiryDetailList.AliasName}}</p>
-                <p class="inpuiry"><span>{{inquiryDetailList.list&&inquiryDetailList.list[0].market_attribute.year}}</span>款 <span  v-show="inquiryDetailList">{{inquiryDetailList.list&&inquiryDetailList.list[0].car_name}}</span> </p>
+                <p class="inpuiry">
+                    <span>{{inquiryDetailList.list&&inquiryDetailList.list[0].market_attribute.year}}</span>款
+                    <span>{{inquiryDetailList.list&&inquiryDetailList.list[0].car_name}}</span>
+                </p>
                 </div>
                 <span class="righticon">&gt;</span>
         </div>
@@ -93,13 +95,13 @@ export default {
         this.getInquiryDetailList(id);
         let car_id = this.currentList;
          // 车款id
-        let idi = car_id[0].list[0].car_id;
+        let idi = car_id && car_id[0].list[0].car_id;
         localStorage.setItem('car_id',idi)
          // 默认地点北京id
         let cityCurrentId = this.cityCurrentId;
+        // 请求数据
         this.getDealerList({idi,cityCurrentId});
-        console.log(this.dealerList,'15616546456')
-        console.log(this.$store)
+        // console.log(this.$store);
         
     },
     mounted(){
@@ -114,6 +116,11 @@ export default {
         text-align: center;
         color: #fff;
         background: #79cd92;
+    }
+    .inquiry{
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
     }
     .inquiryDetail{
         display: flex;  
@@ -219,6 +226,7 @@ export default {
         float: right;
     }
     .check{
+        background: #79cd92;
         position: absolute;
         left: 10px;
         top: 50%;

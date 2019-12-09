@@ -62,8 +62,7 @@ export default {
       current: state => state.detail.current
     })
   },
-  mounted() {
-  },
+  
   methods: {
     ...mapActions({
       getInfoAndListById: "detail/getInfoAndListById",
@@ -83,9 +82,10 @@ export default {
         this.$router.push("/img");
       }
   },
-  created() {
+  mounted() {
     this.getInfoAndListById(this.$route.query.id);
   },
+
   data() {
     return {
       cur: 0,
