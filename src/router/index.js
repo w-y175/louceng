@@ -34,6 +34,10 @@ const routes = [
   {
     path:"/colour",
     component:()=>import('../views/colour')
+  },
+  {
+    path:'/carstyle',
+    component:()=>import('../views/CarStyle')
   }
 ]
 
