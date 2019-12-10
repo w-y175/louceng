@@ -38,6 +38,10 @@ const routes = [
   {
     path:'/carstyle',
     component:()=>import('../views/CarStyle')
+  },
+  {
+    path:'/detailTubine',
+    component:()=>import('../views/detailTubine')
   }
 ]
 

@@ -1,7 +1,7 @@
 <template>
     <div class="inquiry" v-if="(Object.keys(inquiryDetailList))">
         <p class="topp">可向多个商家询问最低价,商家及时回复</p>
-        <div  class="inquiryDetail">
+        <div  class="inquiryDetail" @click="showDedail">
             <img v-lazy="inquiryDetailList.Picture" slt="" class="inquiryDetailImg" />
             <div>
                 <p class="inquiryDetailtop">{{inquiryDetailList.AliasName}}</p>
@@ -93,9 +93,14 @@ export default {
                 alert('请输入正确的手机号或姓名')
             }
         },
+        // 是否选中的经销商
         checkTag(item){
            item.newsRemainingDays = !item.newsRemainingDays;
-            
+        },
+        // 低价 详情组件
+        showDedail(){
+            this.$router.push('/detailTubine')
+            console.log(13)
         }
     },
     created(){
@@ -187,6 +192,9 @@ export default {
     .inquirybtn{
         text-align: center;
         line-height: 45px;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 50px;
     }
     .btnXun{
         width: 100%;
