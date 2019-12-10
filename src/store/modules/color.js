@@ -2,21 +2,26 @@ import { getModelImageYearColor } from '@/services/index'
 
 const state = {
 
-    color: {},//汽车颜色
+    list: [],//汽车颜色
+    colorList: [],
+    
 }
 
 const mutations = {
-    upColor(state, payload) {
-        state.color = payload;
-    },
+    setcolorList(state,payload){
+                state.colorList=payload 
+                let obj=JSON.parse(JSON.stringify(payload))
+                let arr=Object.values(obj)
+                state.list=arr
+            }
 
 }
 
 const actions = {
-    async  getModelImageYearColor({ commit }, payload) {
-        let res = await getModelImageYearColor();
-        commit('upColor', res.data);
-    },
+     async getcolorList({commit},payload){
+            let res=await getcolorList(payload)
+            commit("setcolorList",res.data.data)
+            }
 
 }
 
@@ -26,3 +31,28 @@ export default {
     mutations,
     actions
 }
+// import {getcolorList} from "@/services/index"
+// const state={
+//     colorList:{},
+//     list:[],
+// }
+// const mutations={
+//     setcolorList(state,payload){
+//         state.colorList=payload 
+//         let obj=JSON.parse(JSON.stringify(payload))
+//         let arr=Object.values(obj)
+//         state.list=arr
+//     }
+// }
+// const actions={
+//    async getcolorList({commit},payload){
+//     let res=await getcolorList(payload)
+//     commit("setcolorList",res.data.data)
+//     }
+// }
+// export default{
+//     namespaced:true,
+//     state,
+//     mutations,
+//     actions
+// }

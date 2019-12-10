@@ -23,7 +23,7 @@ export default ({
     },
     watch: { 
       '$route' (to, from) { 
-      const arr = ['/city','/colour'];
+      const arr = ['/city',];
       const compare = arr.indexOf(to.path)>arr.indexOf(from.path);  
       this.transitionName = compare ? 'transitionLeft' : 'transitionRight';
       } 

@@ -1,21 +1,22 @@
 <template>
   <div class="color">
+   
     <!-- 头部 -->
     <div class="quan">全部颜色</div>
-    <div class="box">
+    <div class="box" >
       <div class="nav">
         <span
-          v-for="(item,index) in list"
+          v-for="(item,index,key) in colorList"
           :key="index"
           :class="{active:cur==index}"
-          @click="tab(index)"
-        >{{item}}</span>
+          @click="tab(item,key)"
+        >{{index}}</span>
       </div>
       <!--  -->
       <div class="main">
         <div class="in">
-          <p v-for="(item,index) in color[list[cur]]" :key="index" >
-            <i :style="{'background':item.Value}"></i>
+          <p v-for="(item,index) in lists" :key="index" @click='setcolor(item.ColorId,item.Name)'>
+            <i :style="{background:item.Value}"></i>
             <span>{{item.Name}}</span>
           </p>
         </div>
@@ -25,34 +26,50 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import {mapState,mapActions,mapMutations} from "vuex";
 export default {
+  props:['colorFn','name'],
   data() {
     return {
-      cur: 0
+      cur: 0,
+      lists:[],
+      Colorid:''
+      
     };
   },
   computed: {
     ...mapState({
-      color: state => state.color.color
+      list: state => state.color.list,
+      colorList:state=>state.color.colorList
     }),
-    list() {
-      return Object.keys(this.color);
-    }
+    // list() {
+    //   return Object.keys(this.color);
+    // }
   },
   methods: {
-    ...mapActions({
-      getModelImageYearColor: "color/getModelImageYearColor"
+    ...mapMutations({
+setColorId:'Carimg/setColorId'
     }),
+    // ...mapActions({
+    //   getModelImageYearColor: "color/getModelImageYearColor"
+    // }),
 
-    tab(index) {
-      this.cur = index;
+    tab(item,key) {
+      this.lists =item ;
+      this.cur=key
     },
+   
+    setcolor(Colorid,colorname){
+      this.$emit('update:name',colorname)
+      this.$emit('update:colorFn',false)
+    }
+    
+   
    
   },
 
   created() {
-    this.getModelImageYearColor(2593);
+    this.tab(this.list[0],0);
     
   }
 };

@@ -31,14 +31,7 @@ const routes = [
     path:'/img',
     component:()=>import('../views/Img')
   },
-  {
-    path:"/colour",
-    component:()=>import('../views/colour')
-  },
-  {
-    path:'/carstyle',
-    component:()=>import('../views/CarStyle')
-  }
+  
 ]
 
 const router = new VueRouter({

@@ -61,7 +61,7 @@ const mutations = {
 
             // 拿到当前选择年份的数据
             let currentList = [];
-            if (state.current == '全部'){
+            if (state.current == '全部') {
                 currentList = payload.data.list;
             } else {
                 currentList = payload.data.list.filter(item => item.market_attribute.year == state.current);
@@ -88,7 +88,7 @@ const actions = {
         commit
     }, payload) {
         // console.log(payload)
-        
+
         let res = await getInfoAndListById(payload);
         commit("upList", res)
     }
