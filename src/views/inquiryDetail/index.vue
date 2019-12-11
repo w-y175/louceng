@@ -104,6 +104,7 @@ export default {
         }
     },
     created(){
+        console.log(this.inquiryDetailList)
         let id = this.id;
         this.getInquiryDetailList(id);
         let car_id = this.currentList;
