@@ -1,47 +1,39 @@
-import { getImageList } from '@/services/index'
-
-const state = {
- CarImg: [],
+import {getImageList} from "@/services/index"
+const state={
+    allcarimgList:{},
     colorId:"",
-    carId:"",
-   
-
-
+    carId:""
 }
-
-const mutations = {
-    setImg(state, payload){
-        state.CarImg = payload;
+const mutations={
+    setAllcarimgList(state,payload){
+        state.allcarimgList=payload
     },
-    //颜色
-    setColorId(state,payload){
-        state.colorId=payload
-    },
-    //车款
-    setCarId(state,payload){
-        state.carId=payload
-
-    },
-    
-
+    setColorId(state, payload){
+        state.colorId = payload;
+      },
+      setCarId(state, payload){
+        state.carId = payload;
+      }
 }
-
-const actions = {
-    async getImageList({ commit,state },payload){
-        let params={SerialID:payload}
-        //判断颜色
-        if(state.ColorID){
-            params.ColorID=state.ColorID
+const actions={
+    async getImageList({commit},payload){
+        let params = {SerialID:payload};
+        // 判断是否选择颜色
+        if (state.colorId){
+          params.ColorID = state.colorId;
         }
-let res = await getImageList(params);
-
-        commit('setImg', res.data);
-    },
-
+        // 判断是否选择车款
+        if (state.carId){
+          params.CarId = state.carId;
+        }
+        let res=await getImageList(params)
+        console.log(res.data)
+        commit("setAllcarimgList",res.data)
+    }
 }
 
-export default {
-    namespaced: true,
+export default{
+    namespaced:true,
     state,
     mutations,
     actions

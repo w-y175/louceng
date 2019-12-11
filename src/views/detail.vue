@@ -80,7 +80,7 @@ export default {
     },
     img() {
       this.$router.push({
-        path: "/Img",
+        path: "/image",
         query: { SerialID: this.$route.query.id }
       });
     }
