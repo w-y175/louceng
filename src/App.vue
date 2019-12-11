@@ -23,8 +23,9 @@ export default ({
     },
     watch: { 
       '$route' (to, from) { 
-      const arr = ['/city',];
-      const compare = arr.indexOf(to.path)>arr.indexOf(from.path);  
+
+      const arr = ['/city','/detailTubine'];
+  const compare = arr.indexOf(to.path)>arr.indexOf(from.path);  
       this.transitionName = compare ? 'transitionLeft' : 'transitionRight';
       } 
     }  

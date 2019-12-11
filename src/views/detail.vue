@@ -2,7 +2,7 @@
   <div class="page" v-if="(Object.keys(del).length)">
     <!-- 图片 -->
     <div class="img" @click="img">
-      <img :src="del.CoverPhoto" alt />
+      <img :src="del.CoverPhoto.replace('{0}',3)" alt />
       <p>{{del.pic_group_count}}张照片</p>
     </div>
     <!--指导价 -->
