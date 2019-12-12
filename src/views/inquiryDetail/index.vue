@@ -99,8 +99,8 @@ export default {
         },
         // 低价 详情组件
         showDedail(){
-            this.$router.push('/detailTubine')
-            console.log(13)
+            this.$router.push({path:'/detailTubine',query:{SerialID:this.$route.query.id}})
+           
         }
     },
     created(){

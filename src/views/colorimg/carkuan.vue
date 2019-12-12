@@ -21,7 +21,7 @@
               <span class="max">指导价{{ite.market_attribute.official_refer_price}}</span>
               <span class="min">{{ite.market_attribute.dealer_price_min}}起</span>
             </p>
-            <p  class="buttom">{{del.BottomEntranceTitle}}</p>
+           
           </li>
         </ul>
       </div>
@@ -39,7 +39,7 @@ export default {
     },
 computed:{
     ...mapState({
-          del: state => state.detail.del,
+         
        currentList: state => state.detail.currentList,
       year: state => state.detail.year,
       current: state => state.detail.current
@@ -55,7 +55,7 @@ methods:{
       // console.log(index,item)
       this.cur = index;
       this.setCurrent(item);
-    //   this.getInfoAndListById(this.$route.query.id);
+      this.getInfoAndListById(this.$route.query.SerialID);
     },
  },
  created(){

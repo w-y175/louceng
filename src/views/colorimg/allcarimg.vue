@@ -1,6 +1,8 @@
 
 <template>
   <div class="allcarimg">
+    
+    
     <div class="box" >
     <div class="smallImg" v-for="(item,index) in allcarimgList" :key="index">
       <!-- 渲染汽车展示小图片 -->
@@ -8,21 +10,29 @@
         <img :src="ite.Url.replace('{0}',1)"/>
       </div>
         <!-- 图片上的遮罩层 -->
-        <div class="reduce">
-            <p class="p">{{item.Name}}</p>
-             <p>{{item.Count}}></p>
+        <div class="reduce" @click="clickFn(item.Id)">
+            <p class="p" >{{item.Name}}</p>
+             <p >{{item.Count}}></p>
         </div> 
+    
       </div>
+       
     </div>
+    <ImageList v-if='showList'/>
   </div>
+  
 </template>
 
 <script>
-import {mapState,mapActions} from "vuex"
+import ImageList from '@/views/ImageList'
+import {mapState,mapActions,mapMutations} from "vuex"
 export default {
+  components:{
+ImageList
+  },
   data(){
     return{
-      
+      showList:false
     }
   },
   computed:{
@@ -33,7 +43,16 @@ export default {
   methods:{
     ...mapActions({
       getImageList:"Carimg/getImageList"
-    })
+    }),
+    ...mapMutations({
+  setImageID:'Carimg/setImageId',
+  setSerialID:'Carimg/setSerialId'
+    }),
+    clickFn(id){
+      this.setImageID(id)
+      this.showList=true
+    }
+   
   },
   created(){
    let ids=this.$route.query.SerialID
@@ -42,7 +61,10 @@ export default {
   }{
     let id=ids*1
   this.getImageList(id)
+  this.setSerialID(id)
   }
+  
+  
     
   }
 } 
@@ -88,5 +110,16 @@ background:#fff;
   width:100%;
   text-align: center;
   margin: 0 auto;
+}
+.Image{
+  width:100%;
+  height:100%;
+  position:fixed;
+  left:0;
+  top:0,
+
+  
+  
+  
 }
 </style>

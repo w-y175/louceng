@@ -29,6 +29,10 @@ const routes = [
   {
     path:"/image",
     component:image
+   },
+   {
+     path:'/detailTubine',
+     component:()=>import('../views/detailTubine')
    }
   
 ]

@@ -80,11 +80,11 @@ export default {
   height:40px;
   background:#fff;
   margin-bottom:10px;
- position:-webkit-sticky;
+ /* position:-webkit-sticky;
  position:sticky;
  top:0;
  left:0;
- z-index: 999999999999;
+ z-index: 999999999999; */
 }
 .carcolor .c-type{
   width:100%;

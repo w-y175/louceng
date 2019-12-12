@@ -4,7 +4,8 @@
       <Carcolor :chuan="colorList"></Carcolor>
     <!-- 汽车图片 -->
       <Allcarimg></Allcarimg>
-      
+      <!-- 汽车图片列表 -->
+     
   </div>
 </template>
 
