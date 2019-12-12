@@ -16,7 +16,7 @@ export default {
         list:{
             type:Array,
             default(){
-                return []
+                list:'list'
             }
         }
     },

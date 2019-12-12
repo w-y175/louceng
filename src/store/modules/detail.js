@@ -73,6 +73,8 @@ const mutations = {
             // 聚合key相同的车款数据
             currentList = formatCarList(currentList);
             state.currentList = currentList;
+            console.log(state.currentList,"========??????");
+            
         } else {
             alert(payload.msg)
         }
