@@ -2,9 +2,13 @@ import {getImageList} from "@/services/index"
 const state={
     allcarimgList:{},
     colorId:"",
-    carId:""
+    carId:"",
+    
+
+    
 }
 const mutations={
+ 
     setAllcarimgList(state,payload){
         state.allcarimgList=payload
     },
@@ -13,7 +17,8 @@ const mutations={
       },
       setCarId(state, payload){
         state.carId = payload;
-      }
+      },
+
 }
 const actions={
     async getImageList({commit},payload){
@@ -29,7 +34,8 @@ const actions={
         let res=await getImageList(params)
         console.log(res.data)
         commit("setAllcarimgList",res.data)
-    }
+    },
+   
 }
 
 export default{

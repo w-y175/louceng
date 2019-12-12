@@ -1,6 +1,6 @@
 <template>
   <div class="page"  v-if="(Object.keys(currentList).length)">
-  <div class="count">
+   <div class="count">
       <!-- 导航 -->
       <div class="top">
         <span
@@ -12,16 +12,18 @@
       </div>
       <!-- 内容 -->
       <div class="list" v-for="(item,index) in currentList" :key="index">
-        <div class="title">{{item.key}}</div>
-        <div class="box">
-          <p class="name">{{item.list[0].market_attribute.year}}款{{item.list[0].car_name}}</p>
-          <p class="type">{{item.list[0].horse_power}}马力{{item.list[0].gear_num}}档{{item.list[0].trans_type}}</p>
-          <div class="cone">
-            <span class="max">指导价{{item.list[0].market_attribute.official_refer_price}}</span>
-            <span class="min">{{item.list[0].market_attribute.dealer_price_min}}起</span>
-          </div>
-        </div> 
-        
+        <p>{{item.key}}</p>
+        <ul>
+          <li v-for="(ite,i) in item.list" :key="i">
+            <p>{{ite.market_attribute.year}}款{{ite.car_name}}</p>
+            <p>{{ite.horse_power}}马力{{ite.gear_num}}档{{ite.trans_type}}</p>
+            <p>
+              <span class="max">指导价{{ite.market_attribute.official_refer_price}}</span>
+              <span class="min">{{ite.market_attribute.dealer_price_min}}起</span>
+            </p>
+            <p @click="skip" class="buttom">{{del.BottomEntranceTitle}}</p>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

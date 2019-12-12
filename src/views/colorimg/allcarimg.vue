@@ -8,10 +8,11 @@
         <img :src="ite.Url.replace('{0}',1)"/>
       </div>
         <!-- 图片上的遮罩层 -->
-        <div class="reduce">
+        <div class="reduce" @click='clickID'>
             <p class="p">{{item.Name}}</p>
              <p>{{item.Count}}></p>
         </div> 
+
       </div>
     </div>
   </div>
@@ -19,10 +20,14 @@
 
 <script>
 import {mapState,mapActions} from "vuex"
+import ImageList from '@/components/ImageList'
 export default {
+  components:{
+ImageList
+  },
   data(){
     return{
-      
+         showImageList: false
     }
   },
   computed:{
@@ -33,7 +38,13 @@ export default {
   methods:{
     ...mapActions({
       getImageList:"Carimg/getImageList"
-    })
+    }),
+   
+    clickID(){
+     
+      this.showImageList=true
+      
+    }
   },
   created(){
    let ids=this.$route.query.SerialID
@@ -43,6 +54,7 @@ export default {
     let id=ids*1
   this.getImageList(id)
   }
+  
     
   }
 } 
