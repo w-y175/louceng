@@ -74,17 +74,17 @@ export default {
 
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 .carcolor{
   width:100%;
   height:40px;
   background:#fff;
   margin-bottom:10px;
- position:-webkit-sticky;
- position:sticky;
- top:0;
- left:0;
- z-index: 999999999999;
+//  position:-webkit-sticky;
+//  position:sticky;
+//  top:0;
+//  left:0;
+//  z-index: 999999999999;
 }
 .carcolor .c-type{
   width:100%;

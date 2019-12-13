@@ -51,7 +51,6 @@ export default {
 
   created() {
     this.getModelImageYearColor(this.$route.query.id);
-    // console.log("$store...", this.$store);
   }
 };
 </script>

@@ -1,14 +1,11 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-const image=()=>import("../views/colorimg")
-Vue.use(VueRouter)
-
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+const image=()=>import("../views/colorimg");
+Vue.use(VueRouter);
 const routes = [
-  
   {
     path: '/home',
     component:()=>import('../views/Home')
-    // component: Home
   },
   {
     path:"/",
@@ -34,9 +31,7 @@ const routes = [
     path:'/detailTubine',
     component:()=>import('../views/detailTubine')
   }
-  
 ]
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

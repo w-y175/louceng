@@ -2,7 +2,6 @@
   <div id="app">
     <transition :name="transitionName">
       <keep-alive>
-
           <router-view class="transitionBody" :key='key' ></router-view>
  </keep-alive>
     </transition>
@@ -22,8 +21,7 @@ export default ({
       };
     },
     watch: { 
-      '$route' (to, from) { 
-
+      '$route' (to, from) {
       const arr = ['/city','/detailTubine'];
   const compare = arr.indexOf(to.path)>arr.indexOf(from.path);  
       this.transitionName = compare ? 'transitionLeft' : 'transitionRight';
@@ -64,13 +62,10 @@ body{
   -webkit-transform: translate(-100%, 0); 
   transform: translate(100%, 0); 
 }
-
  .transitionLeft-enter{
    transform: translate(0, 100%);
  }
 .transitionLeft-leave-active{
   transform: translate(0, -100%);
 }
-
-
 </style>

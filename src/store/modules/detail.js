@@ -57,8 +57,6 @@ const mutations = {
             //拿到年份
             let year = payload.data.list.map(item => item.market_attribute.year);
             state.year = [...new Set(state.year.concat([...new Set(year)]))];
-
-
             // 拿到当前选择年份的数据
             let currentList = [];
             if (state.current == '全部') {
@@ -73,14 +71,11 @@ const mutations = {
             // 聚合key相同的车款数据
             currentList = formatCarList(currentList);
             state.currentList = currentList;
-            console.log(state.currentList,"========??????");
-            
         } else {
             alert(payload.msg)
         }
     },
     setCurrent(state, payload) {
-        // console.log("payload*******", payload)
         state.current = payload
     }
 }

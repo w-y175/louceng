@@ -13,7 +13,6 @@ const mutations = {
     // 省市列表
   getList(pay, load) {
     pay.cityList = load;
-    // console.log(pay.cityList)
   },
   // 获取对应城市
   getcityIndex(pay, load) {

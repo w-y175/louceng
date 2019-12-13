@@ -54,8 +54,7 @@ export default {
         let id=ColorId*1
          this.setColorId(id)
       }
-      this.$emit('update:showColor', false)
-      
+      this.$emit('update:showColor', false);
     }
   },
   created(){

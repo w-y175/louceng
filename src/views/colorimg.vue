@@ -21,7 +21,6 @@ export default {
   computed: {
     ...mapState({
       colorList:state=>state.color.colorList,
-      
     })
   },
   methods:{
@@ -30,7 +29,6 @@ export default {
     })
   },
   created(){
-    // console.log(this.$store)
     this.getcolorList()
   }
 }

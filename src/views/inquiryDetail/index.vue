@@ -116,8 +116,6 @@ export default {
         let cityCurrentId = this.cityCurrentId;
         // 请求数据
         this.getDealerList({idi,cityCurrentId});
-        // console.log(this.$store);
-        console.log(this.$store.state,"11111111111111")
     },
     mounted(){
 

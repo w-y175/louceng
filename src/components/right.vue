@@ -20,17 +20,7 @@ export default {
             }
         }
     },
-    watch:{
-         //watch监听dataList数据的改变，获取到他减去该元素的高度，然后给需要滚动的元素原型上面添加offsetTop
-        // list:function(){
-        //     this.$nextTick(()=>{
-        //         this.offsetTop=(window.innerHeight - this.$refs.touch.offsetHeight)/2;
-        //         // console.log(window.innerHeight - this.$refs.offcialref.offsetHeight)
-        //     })
-        // }
-    },
     components:{
-
     },
     data(){
         return {
@@ -38,7 +28,6 @@ export default {
         }
     },
     computed:{
-        
     },
     methods:{
         ancher(item){
@@ -59,8 +48,7 @@ export default {
                 index=this.list.length-1
             }else if(index<1){
                 index=0
-            }
-            // console.log(this.list[index])
+            };
             document.getElementById(this.list[index].letter).scrollIntoView(true);
         },
     },
@@ -68,8 +56,6 @@ export default {
 
     },
     mounted(){
-       
-      
        
     }
 }

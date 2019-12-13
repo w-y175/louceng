@@ -8,7 +8,7 @@ Vue.config.productionTip = false;
 Vue.use(VueLazyLoad,{
   preLoad:1,
   error:require('./img/error.jpg'),
-  loading:require('./img/succecc.gif')
+  loading:require('./img/succ.gif')
 });
 new Vue({
   router,

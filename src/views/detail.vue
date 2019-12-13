@@ -69,11 +69,9 @@ export default {
     ...mapMutations({ setCurrent: "detail/setCurrent" }),
     skip() {
       let id = this.id;
-      console.log(id);
       this.$router.push({ path: "/inquiryDetail", query: { id } });
     },
     tab(index, item) {
-      // console.log(index,item)
       this.cur = index;
       this.setCurrent(item);
       this.getInfoAndListById(this.$route.query.id);
@@ -87,7 +85,6 @@ export default {
   },
   mounted() {
     this.getInfoAndListById(this.$route.query.id);
-    console.log(this.$route.query.id);
   },
 
   data() {
@@ -98,7 +95,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss" scoped>
 .page {
   height: 100%;
   display: flex;
