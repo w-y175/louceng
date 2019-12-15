@@ -21,16 +21,11 @@ const mutations = {
 }
 
 const actions = {
-    async setList({
-        commit
-      }) {
+    async setList({commit}) {
         let res = await setList();
         commit('getList', res.data);
       },
-    
-      async setcityIndex({
-        commit
-      }, payload) {
+      async setcityIndex({commit}, payload) {
         let res = await setcityIndex(payload);
         commit('getcityIndex', res.data);
       },

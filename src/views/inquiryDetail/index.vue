@@ -34,8 +34,8 @@
                         <span class="spanName">{{item.dealerShortName}}</span> 
                         <span class="spanPrice">{{item.promotePrice}}万</span>
                     </li> 
-                    <li>
-                        <span class="spanAddress">{{item.address}}</span>
+                    <li class="addressLi">
+                        <span class="spanAddress addressD">{{item.address}}</span>
                         <span class="spanAddress spanAddressRight">售{{item.saleRange}}</span>
                     </li>
                 </div>
@@ -278,5 +278,14 @@ export default {
         border-left: none;
         border-top: none;
         top: 47%;
+    }
+    .addressD{
+        display: inline-block;
+        width: 260px;
+        overflow: hidden;
+    }
+    .addressLi{
+        width: 100%;
+        line-height: 18px;
     }
 </style>
