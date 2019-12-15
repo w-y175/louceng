@@ -72,7 +72,7 @@ const actions={
       }
       let res=await getCategoryImageList(params)
       console.log(res)
-let {Count,List}=res.data.data
+let {Count,List}=res.data
 commit('setImageList',{Count,List})
     }
 }
