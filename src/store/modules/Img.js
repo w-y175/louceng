@@ -1,52 +1,57 @@
-import {getImageList,getCategoryImageList} from "@/services/index"
+import {getImageList,getPictureList} from "@/services/index"
 const state={
     allcarimgList:{},
     colorId:"",
     carId:"",
-    imgeList:[],//分类图片列表
-    SerialID:'',//车系ID
-    ImageID:'',//分类id
-    count:'',//当前分类图片总数
-    page:1,//当前分页
-    pageSize:30//每页数量
+    SerialID:"",//车系id
+    ImageID:6,//图片id
+    Page:1,//第几页
+    PageSize:30,//每页条数
+    current:'',
+    imageList:[],
+    showImageSwiper:false//轮播
 }
 const mutations={
-  //改变seriaiId
-  setSerialId(state,payload){
-    state.SerialID=payload
-
-  },//详情数据
     setAllcarimgList(state,payload){
         state.allcarimgList=payload
     },
-    //汽车颜色
     setColorId(state, payload){
         state.colorId = payload;
-      },
-      //汽车车款
-      setCarId(state, payload){
-        state.carId = payload;
-      },
-      //图片分类
-      setImageId(state,payload){
-        state.ImageID=payload
-
-      },
-      //修改当前分类图片列表和总数
-      setImageList(state,payload){
-        state.count=payload.Count
-        state.imgeList=payload.List
-        
-      },
-      //当前分页
-      setPage(state,payload){
-        state.page=payload
-        
-      }
-
+    },
+    setCarId(state, payload){
+      state.carId = payload;
+    },
+    setImageId(state, payload){
+      state.ImageID = payload;
+      console.log(state.ImageID)
+     },
+     setImageList(state, payload){
+            state.count = payload.Count;
+            payload.ImageID && (state.ImageID = payload.ImageID);
+            // 实现上拉加载
+            if (state.page == 1){
+                state.imageList = payload.List;
+            }else{
+                state.imageList = state.imageList.concat(payload.List);
+            }
+            console.log(state.imageList)
+        },
+        // 修改当前分页
+        setPage(state, payload){
+            state.page = payload;
+        },
+        // 设置当前轮播的图片下标
+        setCurrent(state, payload){
+            state.current = payload;
+        },
+        setshowSwiper(state,patload){
+state.showImageSwiper=patload
+        }
 }
 const actions={
-    async getImageList({commit},payload){
+    async getImageList({commit,state},payload){
+        state.SerialID = payload
+        
         let params = {SerialID:payload};
         // 判断是否选择颜色
         if (state.colorId){
@@ -56,24 +61,28 @@ const actions={
         if (state.carId){
           params.CarId = state.carId;
         }
-        let res=await getImageList(params)
-      
-        commit("setAllcarimgList",res.data)
+        let res=await getImageList(params);
+        commit("setAllcarimgList",res.data);
     },
-    //图片分类列表
-    async getCategoryImageList({commit,state}){
-      
-      let params={
-        SerialID:state.SerialID,
-        ImageID:state.ImageID,
-        page:state.page,
-        pageSize:state.pageSize
-        
-      }
-      let res=await getCategoryImageList(params)
-      console.log(res)
-let {Count,List}=res.data
-commit('setImageList',{Count,List})
+    
+    async getPictureList({commit, state}, payload){
+        console.log(payload)
+        if (payload){
+            commit('setPage', payload);
+        }
+
+        let params = {
+            SerialID: state.SerialID,
+            ImageID: state.ImageID,
+            Page: state.Page,
+            PageSize: state.PageSize
+        }
+        console.log(params)
+
+        let res = await getPictureList(params);
+        console.log("res",res.data)
+        let {Count, List} = res.data;
+        commit('setImageList', {Count, List});
     }
 }
 
