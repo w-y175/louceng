@@ -13,15 +13,15 @@
       <!-- 内容 -->
       <div class="list" v-for="(item,index) in currentList" :key="index">
         <p>{{item.key}}</p>
-        <ul>
+        <ul class="imgul">
           <li v-for="(ite,i) in item.list" :key="i">
-            <p>{{ite.market_attribute.year}}款{{ite.car_name}}</p>
+            <p class="describe">{{ite.market_attribute.year}}款{{ite.car_name}}</p>
             <p>{{ite.horse_power}}马力{{ite.gear_num}}档{{ite.trans_type}}</p>
-            <p>
-              <span class="max">指导价{{ite.market_attribute.official_refer_price}}</span>
+            <p class="pright">
               <span class="min">{{ite.market_attribute.dealer_price_min}}起</span>
+              <span class="max">指导价{{ite.market_attribute.official_refer_price}}</span>
+              
             </p>
-           
           </li>
         </ul>
       </div>
@@ -39,7 +39,7 @@ export default {
     },
 computed:{
     ...mapState({
-         
+          del: state => state.detail.del,
        currentList: state => state.detail.currentList,
       year: state => state.detail.year,
       current: state => state.detail.current
@@ -94,7 +94,6 @@ methods:{
 .count > div > p {
   padding: 0 10px;
   height: 25px;
-  line-height: 30px;
   font-size: 13px;
   color: #999;
   background: #f4f4f4;
@@ -103,22 +102,14 @@ methods:{
 .count ul {
   background: #fff;
  }
-.count .list ul  {
-  /* margin-bottom: 5px; */
-}
-.count .list ul li  {
-  /* margin-bottom: 10px; */
+.count ul li {
+  border-bottom: 1px solid #c4c0c0;
+  padding: 10px;
 }
 
-.count ul li:last-child {
-  border-bottom: 0;
- 
-}
 .count ul li p:first-child {
-  padding: 10px  16px;
-  font-size: 16px;
+  font-size: 15px;
   color: #3d3d3d;
- 
 }
 .count ul li p:nth-child(2) {
   color: #bdbdbd;
@@ -129,11 +120,10 @@ methods:{
 .count ul li p:nth-child(3) {
   text-align: right;
   margin-right: 10px;
-  padding-bottom: 8px;
   font-size: 13px;
   color: #818181;
 }
-.count ul li p:nth-child(3) span:nth-child(2) {
+.count ul li p:nth-child(3) span:nth-child(1) {
   font-size: 16px;
   color: #ff2336;
   margin-left: 15px;             
@@ -150,5 +140,27 @@ methods:{
   padding-left: 150px;
   line-height: 40px;
  
+}
+.imgul li{
+  height: 62px;
+  position: relative;
+}
+.pright{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.describe{
+  width: 230px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.pright span{
+  display: block;
+  line-height: 25px;
+}
+.max{
+  font-size: 14px;
 }
 </style>

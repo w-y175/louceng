@@ -1,125 +1,138 @@
 
 <template>
   <div class="allcarimg">
-    
-    
-    <div class="box" >
-    <div class="smallImg" v-for="(item,index) in allcarimgList" :key="index">
-      <!-- 渲染汽车展示小图片 -->
-      <div class="imgs" v-for="(ite,i) in item.List" :key="i">
-        <img :src="ite.Url.replace('{0}',1)"/>
-      </div>
+    <div class="box">
+      <div class="smallImg" v-for="(item,index) in allcarimgList" :key="index">
+        <!-- 渲染汽车展示小图片 -->
+        <div class="imgs" v-for="(ite,i) in item.List" :key="i" @click="showSwiper(index,item.Count,item.List)">
+          <img :src="ite.Url.replace('{0}',1)" />
+        </div>
         <!-- 图片上的遮罩层 -->
-        <div class="reduce" @click="clickFn(item.Id)">
-            <p class="p" >{{item.Name}}</p>
-             <p >{{item.Count}}></p>
-        </div> 
-    
+        <div class="reduce" @click="showPic(item)">
+          <p class="p">{{item.Name}}</p>
+          <p>{{item.Count}}></p>
+        </div>
       </div>
-       
     </div>
-    <ImageList v-if='showList'/>
+    <ImageTypeList v-if="showImageList" :showImageSwiper.sync="showImageSwiper"/>
+    <!-- <transition name="scroll-top">
+     
+      <div class="wrapper" v-show="flag">
+        <ImageTypeList :flag.sync="flag"/>
+      </div>
+    </transition> -->
+    <ImagePreview v-if="showImageSwiper" :showImageSwiper.sync="showImageSwiper"></ImagePreview>
   </div>
-  
 </template>
 
 <script>
-import ImageList from '@/views/ImageList'
-import {mapState,mapActions,mapMutations} from "vuex"
+import { mapState, mapActions, mapMutations } from "vuex";
+import ImageTypeList from "./ImageTypeList.vue";
+import ImagePreview from './ImagePreview';
 export default {
-  components:{
-ImageList
+  data() {
+    return {
+      // flag: false,
+       showImageList: false,
+       showImageSwiper: false
+    };
   },
-  data(){
-    return{
-      showList:false
-    }
-  },
-  computed:{
+
+  computed: {
     ...mapState({
-      allcarimgList:state=>state.Carimg.allcarimgList
+      allcarimgList: state => state.Carimg.allcarimgList
     })
   },
-  methods:{
+  components: {
+    ImageTypeList,
+    ImagePreview
+  },
+  methods: {
     ...mapActions({
-      getImageList:"Carimg/getImageList"
+      getImageList: "Carimg/getImageList",
+      getPictureList: "Carimg/getPictureList"
     }),
     ...mapMutations({
-  setImageID:'Carimg/setImageId',
-  setSerialID:'Carimg/setSerialId'
+      setImageId: "Carimg/setImageId",
+      setCurrent: 'Carimg/setCurrent',
+      setImageList: 'Carimg/setImageList'
     }),
-    clickFn(id){
-      this.setImageID(id)
-      this.showList=true
+    showPic(item) {
+      console.log(item);
+      this.setImageId(item.Id);
+      this.showImageList = true;
+    },
+    showSwiper(index, Count, List){
+      this.setCurrent(index);
+      this.setImageList({
+        Count,
+        List,
+        
+      });
+      this.showImageSwiper = true;
     }
-   
   },
-  created(){
-   let ids=this.$route.query.SerialID
-  if(ids instanceof String){
-    alert("")
-  }{
-    let id=ids*1
-  this.getImageList(id)
-  this.setSerialID(id)
+  created() {
+    let ids = this.$route.query.SerialID;
+    if (ids instanceof String) {
+      alert("");
+    }
+    {
+      let id = ids * 1;
+      this.getImageList(id);
+      
+    }
   }
-  
-  
-    
-  }
-} 
+};
 </script>
 
 <style scoped>
-.allcarimg{
-  width:100%;
- height:100%;
- overflow-x: hidden;
-background:#fff;
+.scroll-top-enter,
+.scroll-top-leave-to {
+  transform: translate3d(0, 100%, 0);
 }
-.allcarimg .smallImg{
+.scroll-top-enter-active,
+.scroll-top-leave-active {
+  transition: transform 0.3s linear;
+}
+.allcarimg {
   width: 100%;
-   display:flex;
-   flex-wrap: wrap;
-   justify-content: space-between;
-   position:relative;
-     overflow-y: scroll;
+  height: 100%;
+  overflow-x: hidden;
+  background: #fff;
 }
-.allcarimg .smallImg .imgs{
-  width:32.5%;
+.allcarimg .smallImg {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+  overflow-y: scroll;
 }
-.allcarimg .smallImg img{
-  width:100%; 
-  height:110px;
+.allcarimg .smallImg .imgs {
+  width: 32.5%;
 }
-.allcarimg .smallImg .reduce{
- width:32.5%;
- height:110px;
- background:rgba(0, 0, 0, 0.5);
- position: absolute;;
- top:0;
- left:0;
- color:#fff;
- font-size: 14px;
- text-align: center;
+.allcarimg .smallImg img {
+  width: 100%;
+  height: 110px;
 }
-.allcarimg .smallImg .reduce .p{
-  margin-top:35px;
+.allcarimg .smallImg .reduce {
+  width: 32.5%;
+  height: 110px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
 }
-.allcarimg .wrap{
-  width:100%;
+.allcarimg .smallImg .reduce .p {
+  margin-top: 35px;
+}
+.allcarimg .wrap {
+  width: 100%;
   text-align: center;
   margin: 0 auto;
-}
-.Image{
-  width:100%;
-  height:100%;
-  position:fixed;
-  left:0;
-  top:0,
-
-  
-  
-  
 }
 </style>

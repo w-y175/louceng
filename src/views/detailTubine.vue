@@ -21,7 +21,6 @@
               <span class="max">指导价{{ite.market_attribute.official_refer_price}}</span>
               <span class="min">{{ite.market_attribute.dealer_price_min}}起</span>
             </p>
-            
           </li>
         </ul>
       </div>
@@ -55,7 +54,6 @@ methods:{
         this.setCurrent(item)
         this.getInfoAndListById(this.$route.query.SerialID);
       },
-    
 },
 created(){
     this.getInfoAndListById(this.$route.query.SerialID)
@@ -63,7 +61,7 @@ created(){
 }
 </script>
 
-<style>
+<style lang='scss' scoped>
 .page {
   height: 100%;
   display: flex;
@@ -146,6 +144,5 @@ created(){
   font-weight: 500;
   padding-left: 150px;
   line-height: 40px;
-  /* margin-bottom: 5px */
 }
 </style>

@@ -13,7 +13,6 @@ const mutations = {
     // 省市列表
   getList(pay, load) {
     pay.cityList = load;
-    // console.log(pay.cityList)
   },
   // 获取对应城市
   getcityIndex(pay, load) {
@@ -22,16 +21,11 @@ const mutations = {
 }
 
 const actions = {
-    async setList({
-        commit
-      }) {
+    async setList({commit}) {
         let res = await setList();
         commit('getList', res.data);
       },
-    
-      async setcityIndex({
-        commit
-      }, payload) {
+      async setcityIndex({commit}, payload) {
         let res = await setcityIndex(payload);
         commit('getcityIndex', res.data);
       },

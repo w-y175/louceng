@@ -9,7 +9,8 @@ const state={
     PageSize:30,//每页条数
     current:'',
     imageList:[],
-    showImageSwiper:false//轮播
+    count:''
+    
 }
 const mutations={
     setAllcarimgList(state,payload){
@@ -34,7 +35,7 @@ const mutations={
             }else{
                 state.imageList = state.imageList.concat(payload.List);
             }
-            console.log(state.imageList)
+            // console.log(state.imageList)
         },
         // 修改当前分页
         setPage(state, payload){
@@ -44,9 +45,8 @@ const mutations={
         setCurrent(state, payload){
             state.current = payload;
         },
-        setshowSwiper(state,patload){
-state.showImageSwiper=patload
-        }
+        
+       
 }
 const actions={
     async getImageList({commit,state},payload){

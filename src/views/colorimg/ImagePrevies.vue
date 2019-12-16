@@ -1,6 +1,6 @@
 <template>
     <div class="preview">
-        <van-image-previwe
+        <van-image-preview
         v-model="showPreview"
         :images='list'
         @change='change'
@@ -9,7 +9,7 @@
         <template v-slot:index>
           {{`${current+1}/${count}`}}
         </template>
-</van-image-previwe>
+</van-image-preview>
 
     </div>
 </template>
@@ -44,7 +44,7 @@ showPreview:{
         return this.showImageSwiper
     },
     set(value){
-        this.$emit('updata:showImageSwiper',false)
+        this.$emit('update:showImageSwiper',false)
 
     }
 }
@@ -77,5 +77,7 @@ showPreview:{
 }
 </script>
 <style scoped lang="scss">
-
+.preview /deep/ .van-image-preview__overlay {
+  background: #000;
+}
 </style>

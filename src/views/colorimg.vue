@@ -4,8 +4,7 @@
       <Carcolor :chuan="colorList"></Carcolor>
     <!-- 汽车图片 -->
       <Allcarimg></Allcarimg>
-      <!-- 汽车图片列表 -->
-     
+      
   </div>
 </template>
 
@@ -22,7 +21,6 @@ export default {
   computed: {
     ...mapState({
       colorList:state=>state.color.colorList,
-      
     })
   },
   methods:{
@@ -31,7 +29,6 @@ export default {
     })
   },
   created(){
-    // console.log(this.$store)
     this.getcolorList()
   }
 }

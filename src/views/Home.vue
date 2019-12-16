@@ -57,7 +57,6 @@ export default {
       document.querySelector(".wrapper").scrollTop = document.querySelector(
         `#${item}`
       ).offsetTop;
-      console.log(document.querySelector(".wrapper").scrollTop, document.querySelector( `#${item}`).offsetTop)
     },
     addShow(id){
       this.getTag(true)
@@ -84,7 +83,7 @@ export default {
   transform: translateX(75%);
 }
 .carIndex{
-  width: 280px;
+  width: 75%;
   height: 100%;
   background: #fff;
   position: fixed;

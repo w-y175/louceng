@@ -1,9 +1,11 @@
-// import Vue from 'vue'
-// Vue.directive('stricky',{
+import Vue from 'vue'
+Vue.directive('stricky',{
+    update:function(el,binding){
+        let {value,oldValue} = binding;
+        if(value && value !=oldValue){
+            let child = document.getElementById(value);
+            el.scrollTop = child.offsetTop;
+        }
+    }
+})
 
-//     let {value,oldValue}=binding;
-//     if(value&&(value!=olValue)){
-//         let child=document.getEementById(value)
-//         el.srcollTop=child.offsetTop
-//     }
-// })

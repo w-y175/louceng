@@ -34,8 +34,8 @@
                         <span class="spanName">{{item.dealerShortName}}</span> 
                         <span class="spanPrice">{{item.promotePrice}}万</span>
                     </li> 
-                    <li>
-                        <span class="spanAddress">{{item.address}}</span>
+                    <li class="addressLi">
+                        <span class="spanAddress addressD">{{item.address}}</span>
                         <span class="spanAddress spanAddressRight">售{{item.saleRange}}</span>
                     </li>
                 </div>
@@ -99,12 +99,13 @@ export default {
         },
         // 低价 详情组件
         showDedail(){
-            this.$router.push({path:'/detailTubine',query:{SerialID:this.$route.query.id}})
-           
+            this.$router.push({
+            path: '/detailTubine',
+            query: { SerialID: this.$route.query.id }
+        });
         }
     },
     created(){
-        console.log(this.inquiryDetailList)
         let id = this.id;
         this.getInquiryDetailList(id);
         let car_id = this.currentList;
@@ -115,8 +116,6 @@ export default {
         let cityCurrentId = this.cityCurrentId;
         // 请求数据
         this.getDealerList({idi,cityCurrentId});
-        // console.log(this.$store);
-        console.log(this.$store.state,"11111111111111")
     },
     mounted(){
 
@@ -279,5 +278,14 @@ export default {
         border-left: none;
         border-top: none;
         top: 47%;
+    }
+    .addressD{
+        display: inline-block;
+        width: 260px;
+        overflow: hidden;
+    }
+    .addressLi{
+        width: 100%;
+        line-height: 18px;
     }
 </style>

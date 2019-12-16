@@ -48,7 +48,6 @@ methods:{
       }),
       ...mapMutations({setCurrent:"detail/setCurrent"}),
        tab(index,item) {
-        // console.log(index,item)
         this.cur = index;
         this.setCurrent(item)
         this.getInfoAndListById();

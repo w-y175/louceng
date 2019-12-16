@@ -18,6 +18,7 @@
 </template>
 <script>
 import {mapState,mapActions,mapMutations} from 'vuex'
+
 export default {
     props:{
 
@@ -64,12 +65,16 @@ change(index){
 }
 </script>
 <style scoped lang="scss">
-.wrap{
+.wrap {
     position: fixed;
-    width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
-    background: #fff
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 </style>
