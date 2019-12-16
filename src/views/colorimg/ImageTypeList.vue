@@ -40,7 +40,7 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 import Scroll from "./better-scroll/scroll";
 import ImagePreview from "./ImagePreview";
-import { async } from "q";
+
 
 export default {
   data() {
@@ -121,7 +121,7 @@ export default {
       // setTimeout(()=>{
       // this.loadMoreDispatch(this.page + 1);
       // }, 10000);
-      this.setPage(this.page + 1);
+      // this.setPage(this.page + 1);
       await this.loadMoreDispatch(this.page + 1);
     },
     showSwiper(index) {

@@ -27,7 +27,7 @@ export default {
     ...mapState({
       imageList: state => state.Carimg.imageList,
       current: state => state.Carimg.current,
-      page: state => state.Carimg.Page,
+      page: state => state.Carimg.page,
       count: state => state.Carimg.count
     }),
     list() {

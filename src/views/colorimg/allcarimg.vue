@@ -61,7 +61,7 @@ export default {
       console.log(item);
       this.setImageId(item.Id);
       this.showImageList = true;
-    },
+    }, 
     showSwiper(index, Count, List){
       this.setCurrent(index);
       this.setImageList({
