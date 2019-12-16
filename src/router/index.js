@@ -4,11 +4,7 @@ const image=()=>import("../views/colorimg");
 Vue.use(VueRouter);
 const routes = [
   {
-    path:"/",
-    redirect:"/home"
-  },
-  {
-    path: '/home',
+    path: '/',
     component:()=>import('../views/Home')
   },
   {

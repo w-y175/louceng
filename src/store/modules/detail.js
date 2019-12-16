@@ -13,9 +13,9 @@ const state = {
 // 给车款排序
 function sortCarList(list) {
     list.sort((a, b) => {
-        if (a.exhaust_str == b.exhaust_str) {
-            if (a.max_power_str == b.max_power_str) {
-                return b.inhale_type > a.inhale_type;
+        if (a.exhaust_str == b.exhaust_str) {  //  排量
+            if (a.max_power_str == b.max_power_str) {  // 最高时速
+                return b.inhale_type > a.inhale_type;  // 涡轮增压
             } else {
                 return a.max_power - b.max_power;
             }
