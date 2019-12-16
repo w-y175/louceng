@@ -8,7 +8,9 @@ const state={
     Page:1,//第几页
     PageSize:30,//每页条数
     current:'',
-    imageList:[]
+    imageList:[],
+    count:''
+    
 }
 const mutations={
     setAllcarimgList(state,payload){
@@ -33,7 +35,7 @@ const mutations={
             }else{
                 state.imageList = state.imageList.concat(payload.List);
             }
-            console.log(state.imageList)
+            // console.log(state.imageList)
         },
         // 修改当前分页
         setPage(state, payload){
@@ -42,7 +44,9 @@ const mutations={
         // 设置当前轮播的图片下标
         setCurrent(state, payload){
             state.current = payload;
-        }
+        },
+        
+       
 }
 const actions={
     async getImageList({commit,state},payload){
@@ -60,20 +64,7 @@ const actions={
         let res=await getImageList(params);
         commit("setAllcarimgList",res.data);
     },
-    // async getPictureList({commit, state},payload){
-    //     if (payload){
-    //       commit('setPage', payload);
-    //     }
-    //     let params = {
-    //         SerialID: state.SerialID,
-    //         ImageID: state.ImageID,
-    //         Page: state.page,
-    //         PageSize: state.pageSize
-    //     }
-    //     let res = await getPictureList(params);
-    //     let {Count, List} = res.data.data;
-    //     commit('setImageList', {Count, List});
-    // }
+    
     async getPictureList({commit, state}, payload){
         console.log(payload)
         if (payload){
