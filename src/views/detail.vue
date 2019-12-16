@@ -67,7 +67,7 @@ export default {
       getInfoAndListById: "detail/getInfoAndListById"
     }),
     ...mapMutations({ setCurrent: "detail/setCurrent" }),
-    skip() {io
+    skip() {
       let id = this.id;
       this.$router.push({ path: "/inquiryDetail", query: { id } });
     },
@@ -75,7 +75,7 @@ export default {
       this.cur = index;
       this.setCurrent(item);
       this.getInfoAndListById(this.$route.query.id);
-      _hmt.push(['_trackEvent', item,'click']);
+      
     },
     img() {
       this.$router.push({
