@@ -1,20 +1,5 @@
 <template>
   <div class="wrap">
-    <!-- <CommonList :list="{
-                query: {page},
-                limit: 30,
-                count: count,
-                refreshDispatch: 'pic/getImageTypeList',
-                loadMoreDispatch: 'pic/getImageTypeList',
-                value:value
-            }">           
-                <template v-slot:default="slotProps">
-                    <ul>
-                        <span :key="index" v-for="(item, index) in slotProps.value" :style="{backgroundImage: 'url('+item.Url.replace('{0}', item.LowSize)+')'}"/>
-                    </ul>
-</template>
-    </CommonList>-->
-
     <Scroll
       ref="scroll"
       :data="value"
@@ -40,7 +25,6 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 import Scroll from "./better-scroll/scroll";
 import ImagePreview from "./ImagePreview";
-import { async } from "q";
 
 export default {
   data() {
@@ -109,32 +93,16 @@ export default {
       setCurrent: "Carimg/setCurrent"
     }),
     async onPullingDown() {
-      // console.log('pullingdown...');
-      // setTimeout(()=>{
-      //     this.refreshDispatch(1);
-      // }, 10000);
-
       await this.refreshDispatch(1);
     },
     async onPullingUp() {
-      // console.log('pullingup...');
-      // setTimeout(()=>{
-      // this.loadMoreDispatch(this.page + 1);
-      // }, 10000);
-      this.setPage(this.page + 1);
       await this.loadMoreDispatch(this.page + 1);
     },
     showSwiper(index) {
       // 显示轮播
-      // console.log(index,Count,List)
       this.showImageSwiper = true;
-      // this.$emit("update:showImageSwiper", true)
       // 修改current
       this.setCurrent(index);
-      // this.setImageList({
-      //     Count,List
-      // })
-      // console.log(this.value)
     }
   },
   async mounted() {
@@ -151,6 +119,7 @@ export default {
   width: 100%;
   height: 100%;
   background: #fff;
+  overflow: auto;
   z-index: 99;
 }
 ul {

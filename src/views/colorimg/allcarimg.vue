@@ -15,12 +15,6 @@
       </div>
     </div>
     <ImageTypeList v-if="showImageList" :showImageSwiper.sync="showImageSwiper"/>
-    <!-- <transition name="scroll-top">
-     
-      <div class="wrapper" v-show="flag">
-        <ImageTypeList :flag.sync="flag"/>
-      </div>
-    </transition> -->
     <ImagePreview v-if="showImageSwiper" :showImageSwiper.sync="showImageSwiper"></ImagePreview>
   </div>
 </template>
