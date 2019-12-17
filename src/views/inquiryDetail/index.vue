@@ -212,6 +212,7 @@ export default {
         border-radius: 5px;
         outline: none;
         border: none;
+        line-height: 35px;
     }
     .righticon{
         position: absolute;
