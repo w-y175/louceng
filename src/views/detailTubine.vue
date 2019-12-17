@@ -1,6 +1,6 @@
 <template>
-  <div class="page"  v-if="(Object.keys(currentList).length)">
-  <div class="count">
+  <div class="styles">
+     <div class="count">
       <!-- 导航 -->
       <div class="top">
         <span
@@ -25,11 +25,11 @@
         </ul>
       </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
-import {mapState,mapActions,mapMutations} from 'vuex'
+import {mapState,mapActions,mapMutations} from "vuex"
 export default {
     data(){
         return{
@@ -38,7 +38,8 @@ export default {
     },
 computed:{
     ...mapState({
- currentList: state => state.detail.currentList,
+          del: state => state.detail.del,
+       currentList: state => state.detail.currentList,
       year: state => state.detail.year,
       current: state => state.detail.current
     })

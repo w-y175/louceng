@@ -5,7 +5,7 @@ const state={
     carId:"",
     SerialID:"",//车系id
     ImageID:6,//图片id
-    Page:1,//第几页
+    page:1,//第几页
     PageSize:30,//每页条数
     current:'',
     imageList:[],

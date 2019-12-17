@@ -7,12 +7,12 @@
     </div>
     <!--指导价 -->
     <div class="con">
-      <div class="left">
+     
         <p>{{del.market_attribute.dealer_price}}</p>
-        <h5>指导价{{del.market_attribute.official_refer_price}}</h5>
-      </div>
+        <p>指导价{{del.market_attribute.official_refer_price}}</p>
+      
       <!--询问低价 -->
-      <div class="right">
+      <div class="action">
         <button @click="skip">{{del.BottomEntranceTitle}}</button>
       </div>
     </div>
@@ -62,6 +62,7 @@ export default {
     })
   },
 
+
   methods: {
     ...mapActions({
       getInfoAndListById: "detail/getInfoAndListById"
@@ -75,7 +76,7 @@ export default {
       this.cur = index;
       this.setCurrent(item);
       this.getInfoAndListById(this.$route.query.id);
-      _hmt.push(['_trackEvent', item,click]);
+      
     },
     img() {
       this.$router.push({
@@ -84,9 +85,10 @@ export default {
       });
     }
   },
-  mounted() {
+  mounted(){
     this.getInfoAndListById(this.$route.query.id);
   },
+
 
   data() {
     return {
@@ -128,45 +130,48 @@ export default {
   font-size: 12px;
   text-align: center;
 }
-.con {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #fff;
-  position: relative;
+
+
+  .con {
+    padding: 15px 15px 13px;
+    background: #fff;
+    position: relative;
 }
-.con .left {
-  width: 50%;
-  height: 50px;
-  margin-left: 10px;
-  margin-top: 5px;
+.con p:first-child {
+    font-size: 17px;
+    color: red;
+    font-weight: 500;
+    }
+    .con p:nth-child(2) {
+    font-size: 13px;
+    color: silver;
+    }
+
+
+.con .action {
+    padding-top: 13px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 50%;
+    position: absolute;
+    right: 3px;
+   top: 3px
+    }
+.con .action button:last-child {
+    background: #00afff;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    height: 35px;
+     width:180px;
+    border: none;
+    box-sizing: border-box;
+
+
 }
-.left p {
-  font-size: 16px;
-  color: red;
-}
-.left h5 {
-  font-size: 13px;
-  color: #999999;
-  font-weight: none;
-}
-.con .right {
-  width: 50%;
-  position: absolute;
-  right: 0.1rem;
-}
-.con .right button {
-  width: 185px;
-  height: 35px;
-  background: #00afff;
-  color: #fff;
-  border-radius: 10px;
-  border: none;
-  font-size: 16px;
-  margin-top: 8px;
-}
+
+
+
 
 .count .top {
   border-top: 10px solid #f4f4f4;
@@ -198,15 +203,18 @@ export default {
   background: #f4f4f4;
 }
 
+
 .count ul {
   background: #fff;
  }
-.count .list ul li {
+ ul li {
   margin-bottom: 5px;
 }
 
+
 .count ul li:last-child {
   border-bottom: 0;
+ 
  
 }
 .count ul li p:first-child {
@@ -242,7 +250,7 @@ export default {
   font-weight: 500;
   padding-left: 150px;
   line-height: 40px;
-  /* margin-bottom: 5px */
+  
 }
 .footer {
   width: 100%;
