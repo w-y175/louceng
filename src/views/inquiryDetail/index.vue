@@ -209,6 +209,7 @@ export default {
         width: 80%;
         background: #3aacff;
         height: 35px;
+        line-height: 35px;
         border-radius: 5px;
         outline: none;
         border: none;
